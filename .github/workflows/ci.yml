@@ -14,13 +14,49 @@ concurrency:
 
 jobs:
   checks:
-    name: Lint, types, tests, build
+    name: Lint, types, tests
     runs-on: ubuntu-latest
-    # the API tests run against a real MongoDB, exactly like local development
+    # the tests run against real MongoDB, Redis and an S3-compatible server, exactly like local development
     services:
       mongodb:
         image: mongo:8
         ports: ['27017:27017']
+      redis:
+        image: redis:8
+        ports: ['6379:6379']
+    env:
+      S3_TEST_ENDPOINT: http://127.0.0.1:9000
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - name: Start MinIO
+        run: |
+          docker run -d --name minio -p 9000:9000 \
+            -e MINIO_ROOT_USER=minioadmin -e MINIO_ROOT_PASSWORD=minioadmin \
+            minio/minio server /data
+          for i in $(seq 1 30); do curl -fs http://127.0.0.1:9000/minio/health/live && break || sleep 1; done
+      - run: npm ci
+      - name: Lint and format
+        run: npm run lint
+      - name: Type check (strict)
+        run: npm run typecheck
+      - name: Tests with coverage
+        run: npm run test:coverage
+      - name: Audit dependencies
+        run: npm audit --audit-level=high --omit=dev
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: coverage
+          path: packages/core/coverage
+
+  build:
+    name: Build and bundle budgets
+    runs-on: ubuntu-latest
+    needs: checks
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -28,13 +64,61 @@ jobs:
           node-version-file: .nvmrc
           cache: npm
       - run: npm ci
-      - name: Lint and format
-        run: npm run lint
-      - name: Type check (strict)
-        run: npm run typecheck
-      - name: Tests
-        run: npm test
-      - name: Build
-        run: npm run build
-      - name: Audit dependencies
-        run: npm audit --audit-level=high --omit=dev
+      - run: npm run build
+      - name: Bundle budget per route
+        run: npm run size
+
+  e2e:
+    name: Browser tests (Playwright)
+    runs-on: ubuntu-latest
+    needs: checks
+    services:
+      mongodb:
+        image: mongo:8
+        ports: ['27017:27017']
+      redis:
+        image: redis:8
+        ports: ['6379:6379']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - name: Privacy, realtime, images, feed and accessibility
+        run: npm run e2e
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: playwright-report
+          path: |
+            e2e/playwright-report
+            e2e/test-results
+
+  lighthouse:
+    name: Lighthouse on the built app
+    runs-on: ubuntu-latest
+    needs: checks
+    services:
+      mongodb:
+        image: mongo:8
+        ports: ['27017:27017']
+      redis:
+        image: redis:8
+        ports: ['6379:6379']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - name: Start a production-like stack
+        run: perf/stack.sh start
+      - name: Lighthouse (accessibility must be 100)
+        run: |
+          source perf/env.sh
+          node perf/lighthouse.mjs --runs 3 --preset mobile --min-performance 0.85 --min-accessibility 1

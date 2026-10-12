@@ -23,7 +23,8 @@
     "e2e": "npm run test -w @pulse/e2e",
     "size": "size-limit",
     "perf:bundle": "node perf/bundle.mjs",
-    "perf:stack": "perf/stack.sh start"
+    "perf:stack": "perf/stack.sh start",
+    "test:coverage": "npm run test:coverage -w @pulse/core -w @pulse/api"
   },
   "devDependencies": {
     "@eslint/js": "^9.0.0",

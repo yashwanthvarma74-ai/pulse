@@ -10,10 +10,13 @@ const { values } = parseArgs({
   options: {
     writers: { type: 'string', default: '4' },
     'page-size': { type: 'string', default: '50' },
+    'page-delay': { type: 'string', default: '15' },
   },
 });
 const writers = Number(values.writers);
 const limit = Number(values['page-size']);
+// a pause between pages, like a person scrolling, so writes really do land in the middle of the read
+const delay = Number(values['page-delay']);
 
 const reader = await login('bob');
 const headers = { cookie: `pulse_session=${reader}` };
@@ -64,6 +67,7 @@ for (let cursor; ;) {
   pages++;
   cursor = page.nextCursor;
   if (!cursor) break;
+  await new Promise((resolve) => setTimeout(resolve, delay));
 }
 stop = true;
 await Promise.all(writing);

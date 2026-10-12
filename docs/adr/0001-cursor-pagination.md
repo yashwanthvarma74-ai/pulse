@@ -4,44 +4,44 @@ Status: accepted
 
 ## Context
 
-The feed is an infinite scroll over posts that keep arriving. A page boundary has to stay put while new posts
-are published, and it has to stay cheap deep into the feed.
+Every list in Pulse is an infinite scroll over posts that keep arriving. A page boundary has to stay put while
+new posts are published, and it has to stay cheap deep into the list.
 
 ## Decision
 
 Each page ends with a cursor holding the `createdAt` and `_id` of its last post. The next page is "everything
-strictly below that pair" in `(createdAt, _id)` order, sorted on both fields, newest first. The API asks for one
-row more than the page size to know whether another page exists, and returns `nextCursor: null` on the last one.
+strictly below that pair" in `(createdAt, _id)` order, sorted on both fields, newest first. Lists that read
+oldest first (replies) use the same pair the other way round. The cursor is an opaque base64url string.
 
-The cursor is an opaque base64url string. Clients pass it back and never read it.
+The shared `scanPage` helper builds a page from batches, so rows the viewer may not see never produce a short or
+empty page (see [0005](0005-one-visibility-policy.md)).
 
-The index is `{ visibility: 1, createdAt: -1, _id: -1 }`: equality first, then the two sort fields in the sort
-direction. `docs/explain/feed.md` holds the query plans.
+Indexes put equality fields first and then the two sort fields in sort order, for example
+`{ communityId, parentId, createdAt: -1, _id: -1 }`. `docs/explain/queries.md` holds the query plans.
 
 ## Why
 
 - **Offsets shift.** With "skip 3, take 3", a post published after page 1 loads moves everything down by one and
   the first post of page 2 is a repeat. A cursor names a position in the data, so inserts above it change nothing.
-- **Timestamps collide.** Two posts can share a millisecond. Sorting and comparing on `_id` as well gives every
-  post a unique place in the order, so none is skipped or served twice.
-- **Cost stays flat.** The query is an index range scan that starts at the cursor. A page in the middle of 10,000
-  posts examines 23 index keys, the same as the first page. An offset has to walk past every skipped row.
+- **Timestamps collide.** Two posts can share a millisecond. Comparing `_id` as well gives every post a unique place
+  in the order, so none is skipped or served twice. About one seeded post in six shares a timestamp on purpose.
+- **Cost stays flat.** A page 5,000 posts deep examines 42 index keys for 41 rows, the same as the first page.
 
 ## Evidence
 
-- `apps/api/src/feed.test.ts` reads whole feeds with posts arriving between pages, including 25 posts in one
-  millisecond, and a randomized test (fast-check) over timestamps, page sizes and inserts. Removing the `_id` half
-  of the comparison makes two of these fail.
-- Walking 10,000 seeded posts 50 at a time through the running app returned each post exactly once.
+- `packages/core/src/feed.test.ts` and `posts.test.ts` read whole lists with posts arriving between pages, and run
+  randomized properties (fast-check) over timestamps, page sizes, hidden posts and inserts. Removing the `_id` half
+  of the comparison makes them fail.
+- `perf/paging.mjs`: 10,144 posts read in 203 pages while 660 more were published into the same community:
+  0 duplicates, 0 missing.
 
 ## Consequences
 
 - Clients cannot jump to "page 7". An infinite feed does not need to.
-- A cursor is only meaningful for the sort order it was made with. When ranking replaces recency (week 4), the
-  cursor will carry the score as well, and old cursors will be rejected.
+- A cursor only makes sense for the order it was made in. The ranked feed has its own cursor
+  ([0006](0006-ranked-snapshot-and-latest-cursor.md)), and the two are told apart by a prefix.
 
 ## Alternatives
 
-- **Offset and limit:** simple, and wrong while the data changes, as above.
-- **Cursor on `_id` alone:** works while `_id` order equals time order. Later posts can be backdated or imported,
-  so the timestamp stays the source of truth.
+- **Offset and limit:** simple, and wrong while the data changes.
+- **Cursor on `_id` alone:** works only while `_id` order equals time order.

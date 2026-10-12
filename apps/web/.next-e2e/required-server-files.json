@@ -14,20 +14,44 @@
     "configOrigin": "next.config.ts",
     "useFileSystemPublicRoutes": true,
     "generateEtags": true,
-    "pageExtensions": ["tsx", "ts", "jsx", "js"],
+    "pageExtensions": [
+      "tsx",
+      "ts",
+      "jsx",
+      "js"
+    ],
     "instrumentationClientInject": [],
     "poweredByHeader": true,
     "compress": true,
     "images": {
-      "deviceSizes": [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
-      "imageSizes": [32, 48, 64, 96, 128, 256, 384],
+      "deviceSizes": [
+        640,
+        750,
+        828,
+        1080,
+        1200,
+        1920,
+        2048,
+        3840
+      ],
+      "imageSizes": [
+        32,
+        48,
+        64,
+        96,
+        128,
+        256,
+        384
+      ],
       "path": "/_next/image",
       "loader": "default",
       "loaderFile": "",
       "domains": [],
       "disableStaticImages": false,
       "minimumCacheTTL": 14400,
-      "formats": ["image/webp"],
+      "formats": [
+        "image/webp"
+      ],
       "maximumRedirects": 3,
       "maximumResponseBody": 50000000,
       "dangerouslyAllowLocalIP": false,
@@ -41,7 +65,9 @@
         }
       ],
       "remotePatterns": [],
-      "qualities": [75],
+      "qualities": [
+        75
+      ],
       "unoptimized": false,
       "customCacheHandler": false
     },
@@ -309,7 +335,9 @@
     "bundlePagesRouterDependencies": false,
     "configFileName": "next.config.ts",
     "agentRules": false,
-    "transpilePackages": ["@pulse/shared"],
+    "transpilePackages": [
+      "@pulse/shared"
+    ],
     "repoRoot": "/Users/yashwanth/projects/pulse",
     "turbopack": {
       "root": "/Users/yashwanth/projects/pulse"

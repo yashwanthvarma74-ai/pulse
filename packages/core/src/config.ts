@@ -33,6 +33,9 @@ const envSchema = z.object({
   S3_ACCESS_KEY_ID: z.string().optional(),
   S3_SECRET_ACCESS_KEY: z.string().optional(),
 
+  // Posts and replies one address may write per minute. Raise it only for load tests.
+  WRITE_RATE_LIMIT: z.coerce.number().int().positive().default(30),
+
   // Comma separated phrases the moderation worker flags for review.
   MODERATION_TERMS: z.string().default('free crypto,buy followers'),
 });

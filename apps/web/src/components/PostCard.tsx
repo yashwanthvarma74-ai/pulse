@@ -1,6 +1,9 @@
 'use client';
 
-import { Avatar, Badge, Button, useToast } from '@yashwanthvarma74/react';
+import { Avatar } from '@yashwanthvarma74/react/components/Avatar';
+import { Badge } from '@yashwanthvarma74/react/components/Badge';
+import { Button } from '@yashwanthvarma74/react/components/Button';
+import { useToast } from '@yashwanthvarma74/react/components/Toast';
 import Link from 'next/link';
 import { forwardRef, type HTMLAttributes } from 'react';
 import type { FeedItem } from '@pulse/shared';

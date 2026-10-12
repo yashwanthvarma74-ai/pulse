@@ -23,7 +23,7 @@ export function postsRouter(core: Core): Router {
   const router = Router();
   router.use(requireUser);
 
-  const writes = limit(core.config, 60 * 1000, 30);
+  const writes = limit(core.config, 60 * 1000, core.config.WRITE_RATE_LIMIT);
 
   router.post('/', writes, async (req, res) => {
     // validated again inside createPost, which is also called from outside HTTP

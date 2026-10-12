@@ -1,9 +1,9 @@
 'use client';
 
 import { useMutation } from '@tanstack/react-query';
+import { Alert } from '@yashwanthvarma74/react/components/Alert';
+import { Button } from '@yashwanthvarma74/react/components/Button';
 import {
-  Alert,
-  Button,
   Dialog,
   DialogBody,
   DialogClose,
@@ -11,13 +11,13 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-  FormField,
-  Menu,
-  Select,
-  Spinner,
-  Textarea,
-  useToast,
-} from '@yashwanthvarma74/react';
+} from '@yashwanthvarma74/react/components/Dialog';
+import { FormField } from '@yashwanthvarma74/react/components/FormField';
+import { Menu } from '@yashwanthvarma74/react/components/Menu';
+import { Select } from '@yashwanthvarma74/react/components/Select';
+import { Spinner } from '@yashwanthvarma74/react/components/Spinner';
+import { Textarea } from '@yashwanthvarma74/react/components/Textarea';
+import { useToast } from '@yashwanthvarma74/react/components/Toast';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { useRef, useState } from 'react';
 import type { FeedItem, ReportReason } from '@pulse/shared';

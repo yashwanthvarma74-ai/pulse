@@ -1,6 +1,9 @@
 'use client';
 
-import { Alert, Badge, Button, Skeleton } from '@yashwanthvarma74/react';
+import { Alert } from '@yashwanthvarma74/react/components/Alert';
+import { Badge } from '@yashwanthvarma74/react/components/Badge';
+import { Button } from '@yashwanthvarma74/react/components/Button';
+import { Skeleton } from '@yashwanthvarma74/react/components/Skeleton';
 import Link from 'next/link';
 import type { SessionUser } from '@pulse/shared';
 import { timelineKey, useCommunity, useMembership } from '@/lib/queries';

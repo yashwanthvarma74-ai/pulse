@@ -246,8 +246,8 @@
       "turbopackInferModuleSideEffects": true,
       "turbopackPluginRuntimeStrategy": "childProcesses",
       "turbopackSharedRuntime": true,
+      "turbopackMemoryEvictionMode": "auto",
       "optimizePackageImports": [
-        "@yashwanthvarma74/react",
         "lucide-react",
         "date-fns",
         "lodash-es",
@@ -324,7 +324,6 @@
         "react-icons/vsc",
         "react-icons/wi"
       ],
-      "turbopackMemoryEvictionMode": "auto",
       "useCacheTimeout": 54,
       "instantInsights": {
         "validationLevel": "warning"

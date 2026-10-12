@@ -1,18 +1,16 @@
 'use client';
 
 import { useQuery } from '@tanstack/react-query';
-import {
-  Alert,
-  Avatar,
-  Button,
-  FormField,
-  IconButton,
-  Icon,
-  Select,
-  Skeleton,
-  Textarea,
-  useToast,
-} from '@yashwanthvarma74/react';
+import { Alert } from '@yashwanthvarma74/react/components/Alert';
+import { Avatar } from '@yashwanthvarma74/react/components/Avatar';
+import { Button } from '@yashwanthvarma74/react/components/Button';
+import { FormField } from '@yashwanthvarma74/react/components/FormField';
+import { IconButton } from '@yashwanthvarma74/react/components/IconButton';
+import { Icon } from '@yashwanthvarma74/react/components/Icon';
+import { Select } from '@yashwanthvarma74/react/components/Select';
+import { Skeleton } from '@yashwanthvarma74/react/components/Skeleton';
+import { Textarea } from '@yashwanthvarma74/react/components/Textarea';
+import { useToast } from '@yashwanthvarma74/react/components/Toast';
 import { useRef, useState, type FormEvent } from 'react';
 import {
   MAX_MEDIA_PER_POST,

@@ -52,6 +52,15 @@ test.describe('a long feed', () => {
     await bob.page.keyboard.press('PageUp');
     await expect(articles(bob.page).nth(1)).toBeFocused();
 
+    // a focused post is never hidden behind the sticky header (WCAG 2.4.11)
+    for (let i = 0; i < 4; i++) await bob.page.keyboard.press('PageDown');
+    await bob.page.waitForTimeout(300);
+    const header = await bob.page.getByRole('banner').boundingBox();
+    const focused = await bob.page.evaluate(
+      () => document.activeElement?.getBoundingClientRect().top ?? -1,
+    );
+    expect(focused).toBeGreaterThanOrEqual(header!.y + header!.height);
+
     // a post with focus is not thrown out of the DOM when the reader scrolls far away
     const focusedText = await articles(bob.page).nth(1).innerText();
     await bob.page.mouse.wheel(0, 6000);

@@ -1,6 +1,11 @@
 'use client';
 
-import { Alert, Avatar, EmptyState, Input, FormField, Spinner } from '@yashwanthvarma74/react';
+import { Alert } from '@yashwanthvarma74/react/components/Alert';
+import { Avatar } from '@yashwanthvarma74/react/components/Avatar';
+import { EmptyState } from '@yashwanthvarma74/react/components/EmptyState';
+import { Input } from '@yashwanthvarma74/react/components/Input';
+import { FormField } from '@yashwanthvarma74/react/components/FormField';
+import { Spinner } from '@yashwanthvarma74/react/components/Spinner';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { useSearch } from '@/lib/queries';

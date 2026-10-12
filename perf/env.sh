@@ -24,3 +24,5 @@ export LOG_LEVEL=warn
 export MEDIA_DIR=/tmp/pulse-perf-media
 export FANOUT_THRESHOLD=1000
 export JWT_SECRET=perf-secret-that-is-long-enough-for-hs256
+# the load scripts write from one address; the production default is 30 posts a minute
+export WRITE_RATE_LIMIT=100000

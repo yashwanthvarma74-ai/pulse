@@ -1,1 +1,11 @@
-{}
+{
+  "/": "190 kB",
+  "/c/[slug]": "190 kB",
+  "/u/[handle]": "185 kB",
+  "/p/[id]": "175 kB",
+  "/search": "175 kB",
+  "/notifications": "170 kB",
+  "/communities": "170 kB",
+  "/settings": "170 kB",
+  "/moderation": "175 kB"
+}

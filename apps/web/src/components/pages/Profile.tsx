@@ -1,6 +1,10 @@
 'use client';
 
-import { Alert, Avatar, Badge, Button, Skeleton } from '@yashwanthvarma74/react';
+import { Alert } from '@yashwanthvarma74/react/components/Alert';
+import { Avatar } from '@yashwanthvarma74/react/components/Avatar';
+import { Badge } from '@yashwanthvarma74/react/components/Badge';
+import { Button } from '@yashwanthvarma74/react/components/Button';
+import { Skeleton } from '@yashwanthvarma74/react/components/Skeleton';
 import Link from 'next/link';
 import { useProfile, useRelationship } from '@/lib/queries';
 import Feed from '../Feed';

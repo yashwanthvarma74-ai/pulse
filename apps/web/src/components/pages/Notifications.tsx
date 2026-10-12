@@ -1,6 +1,10 @@
 'use client';
 
-import { Alert, Avatar, Button, EmptyState, Skeleton } from '@yashwanthvarma74/react';
+import { Alert } from '@yashwanthvarma74/react/components/Alert';
+import { Avatar } from '@yashwanthvarma74/react/components/Avatar';
+import { Button } from '@yashwanthvarma74/react/components/Button';
+import { EmptyState } from '@yashwanthvarma74/react/components/EmptyState';
+import { Skeleton } from '@yashwanthvarma74/react/components/Skeleton';
 import Link from 'next/link';
 import { useEffect, useMemo } from 'react';
 import type { Notification } from '@pulse/shared';

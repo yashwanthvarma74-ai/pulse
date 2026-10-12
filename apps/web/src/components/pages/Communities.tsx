@@ -1,19 +1,19 @@
 'use client';
 
+import { Alert } from '@yashwanthvarma74/react/components/Alert';
+import { Badge } from '@yashwanthvarma74/react/components/Badge';
+import { Button } from '@yashwanthvarma74/react/components/Button';
 import {
-  Alert,
-  Badge,
-  Button,
   Card,
   CardBody,
   CardDescription,
   CardHeader,
   CardTitle,
-  FormField,
-  Input,
-  Skeleton,
-  Textarea,
-} from '@yashwanthvarma74/react';
+} from '@yashwanthvarma74/react/components/Card';
+import { FormField } from '@yashwanthvarma74/react/components/FormField';
+import { Input } from '@yashwanthvarma74/react/components/Input';
+import { Skeleton } from '@yashwanthvarma74/react/components/Skeleton';
+import { Textarea } from '@yashwanthvarma74/react/components/Textarea';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useState, type FormEvent } from 'react';

@@ -1,6 +1,11 @@
 'use client';
 
-import { Alert, Button, FormField, Select, Skeleton, useToast } from '@yashwanthvarma74/react';
+import { Alert } from '@yashwanthvarma74/react/components/Alert';
+import { Button } from '@yashwanthvarma74/react/components/Button';
+import { FormField } from '@yashwanthvarma74/react/components/FormField';
+import { Select } from '@yashwanthvarma74/react/components/Select';
+import { Skeleton } from '@yashwanthvarma74/react/components/Skeleton';
+import { useToast } from '@yashwanthvarma74/react/components/Toast';
 import Link from 'next/link';
 import type { DefaultVisibility, SessionUser } from '@pulse/shared';
 import { useBlockedUsers, useRelationship, useSetDefaultVisibility } from '@/lib/queries';

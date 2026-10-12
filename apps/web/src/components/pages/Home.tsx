@@ -1,16 +1,11 @@
 'use client';
 
 import { useQueryClient } from '@tanstack/react-query';
-import {
-  Alert,
-  Button,
-  Skeleton,
-  Tabs,
-  TabsList,
-  TabsPanel,
-  TabsTab,
-  VisuallyHidden,
-} from '@yashwanthvarma74/react';
+import { Alert } from '@yashwanthvarma74/react/components/Alert';
+import { Button } from '@yashwanthvarma74/react/components/Button';
+import { Skeleton } from '@yashwanthvarma74/react/components/Skeleton';
+import { Tabs, TabsList, TabsPanel, TabsTab } from '@yashwanthvarma74/react/components/Tabs';
+import { VisuallyHidden } from '@yashwanthvarma74/react/components/VisuallyHidden';
 import { useEffect, useState } from 'react';
 import type { FeedMode } from '@pulse/shared';
 import { prefetchHomeFeed, timelineKey, useSession } from '@/lib/queries';

@@ -1,6 +1,8 @@
 'use client';
 
-import { Avatar, Badge, Button } from '@yashwanthvarma74/react';
+import { Avatar } from '@yashwanthvarma74/react/components/Avatar';
+import { Badge } from '@yashwanthvarma74/react/components/Badge';
+import { Button } from '@yashwanthvarma74/react/components/Button';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';

@@ -246,8 +246,8 @@ self.__SERVER_FILES_MANIFEST={
       "turbopackInferModuleSideEffects": true,
       "turbopackPluginRuntimeStrategy": "childProcesses",
       "turbopackSharedRuntime": true,
+      "turbopackMemoryEvictionMode": "auto",
       "optimizePackageImports": [
-        "@yashwanthvarma74/react",
         "lucide-react",
         "date-fns",
         "lodash-es",
@@ -324,7 +324,6 @@ self.__SERVER_FILES_MANIFEST={
         "react-icons/vsc",
         "react-icons/wi"
       ],
-      "turbopackMemoryEvictionMode": "auto",
       "useCacheTimeout": 54,
       "instantInsights": {
         "validationLevel": "warning"

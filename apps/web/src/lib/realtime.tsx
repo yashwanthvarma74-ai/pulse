@@ -1,7 +1,7 @@
 'use client';
 
 import { useQueryClient } from '@tanstack/react-query';
-import { useToast } from '@yashwanthvarma74/react';
+import { useToast } from '@yashwanthvarma74/react/components/Toast';
 import { useRouter } from 'next/navigation';
 import {
   createContext,

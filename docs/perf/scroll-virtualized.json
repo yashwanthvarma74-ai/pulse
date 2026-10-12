@@ -1,0 +1,45 @@
+{
+  "label": "virtualized",
+  "reachedPosition": 10000,
+  "seconds": 85.3,
+  "fps": 60,
+  "maxArticlesInDom": 17,
+  "samples": [
+    {
+      "articlesInDom": 9,
+      "domNodes": 585,
+      "heapMB": 5.5
+    },
+    {
+      "articlesInDom": 17,
+      "domNodes": 9912,
+      "heapMB": 11.6,
+      "loadedPosts": 1005
+    },
+    {
+      "articlesInDom": 17,
+      "domNodes": 1052,
+      "heapMB": 16.9,
+      "loadedPosts": 2502
+    },
+    {
+      "articlesInDom": 17,
+      "domNodes": 893,
+      "heapMB": 25.2,
+      "loadedPosts": 5005
+    },
+    {
+      "articlesInDom": 17,
+      "domNodes": 11350,
+      "heapMB": 33.3,
+      "loadedPosts": 7500
+    },
+    {
+      "articlesInDom": 17,
+      "domNodes": 11844,
+      "heapMB": 41.7,
+      "loadedPosts": 10000
+    }
+  ],
+  "browser": "156.0.8078.4"
+}

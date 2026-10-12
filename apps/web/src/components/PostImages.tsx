@@ -1,4 +1,4 @@
-import { Skeleton } from '@yashwanthvarma74/react';
+import { Skeleton } from '@yashwanthvarma74/react/components/Skeleton';
 import { MEDIA_WIDTHS, type FeedItem } from '@pulse/shared';
 import styles from './PostImages.module.css';
 

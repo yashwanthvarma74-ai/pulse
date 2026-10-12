@@ -2,7 +2,11 @@
 
 import { useQueryClient } from '@tanstack/react-query';
 import { defaultRangeExtractor, useWindowVirtualizer, type Range } from '@tanstack/react-virtual';
-import { Alert, Button, EmptyState, Skeleton, Spinner } from '@yashwanthvarma74/react';
+import { Alert } from '@yashwanthvarma74/react/components/Alert';
+import { Button } from '@yashwanthvarma74/react/components/Button';
+import { EmptyState } from '@yashwanthvarma74/react/components/EmptyState';
+import { Skeleton } from '@yashwanthvarma74/react/components/Skeleton';
+import { Spinner } from '@yashwanthvarma74/react/components/Spinner';
 import {
   useCallback,
   useEffect,
@@ -29,6 +33,7 @@ const scrollMemory = new Map<string, number>();
 
 const ESTIMATED_POST_HEIGHT = 168;
 const PREFETCH_AHEAD = 6;
+const HEADER_CLEARANCE = 80;
 
 // A feed that renders only the posts on screen, so 10,000 posts cost the same DOM as 20.
 //
@@ -72,6 +77,8 @@ export default function Feed({ source, label, empty }: FeedProps) {
     estimateSize: () => ESTIMATED_POST_HEIGHT,
     overscan: 5,
     scrollMargin,
+    // Page Down scrolls a post to the top of the window; leave room for the sticky header
+    scrollPaddingStart: HEADER_CLEARANCE,
     getItemKey: (index) => posts[index]?.id ?? index,
     rangeExtractor,
   });

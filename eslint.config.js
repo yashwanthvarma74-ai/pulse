@@ -29,7 +29,25 @@ export default tseslint.config(
     },
   },
   {
+    // plain scripts: Node scripts, and the browser code they hand to Playwright to run in the page
     files: ['**/*.{js,mjs}'],
-    languageOptions: { globals: { process: 'readonly', console: 'readonly' } },
+    languageOptions: {
+      globals: {
+        process: 'readonly',
+        console: 'readonly',
+        fetch: 'readonly',
+        performance: 'readonly',
+        setTimeout: 'readonly',
+        window: 'readonly',
+        document: 'readonly',
+        requestAnimationFrame: 'readonly',
+        URL: 'readonly',
+      },
+    },
+  },
+  {
+    // k6 scripts run in k6's own runtime, which provides these
+    files: ['perf/k6/**/*.js'],
+    languageOptions: { globals: { __ENV: 'readonly', __VU: 'readonly' } },
   },
 );

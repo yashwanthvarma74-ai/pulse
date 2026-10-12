@@ -1,6 +1,7 @@
 'use client';
 
-import { Alert, Button } from '@yashwanthvarma74/react';
+import { Alert } from '@yashwanthvarma74/react/components/Alert';
+import { Button } from '@yashwanthvarma74/react/components/Button';
 import { useDemoAccounts, useDemoLogin, useGuestLogin } from '@/lib/queries';
 import styles from './Landing.module.css';
 

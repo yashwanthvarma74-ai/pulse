@@ -1,6 +1,6 @@
 'use client';
 
-import { getThemeInitScript } from '@yashwanthvarma74/react';
+import { getThemeInitScript } from '@/lib/theme';
 import Script from 'next/script';
 
 // Sets data-theme before first paint so a saved dark or high contrast choice does not flash light.

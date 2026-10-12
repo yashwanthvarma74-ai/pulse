@@ -1,6 +1,8 @@
 'use client';
 
-import { Alert, Button, Skeleton } from '@yashwanthvarma74/react';
+import { Alert } from '@yashwanthvarma74/react/components/Alert';
+import { Button } from '@yashwanthvarma74/react/components/Button';
+import { Skeleton } from '@yashwanthvarma74/react/components/Skeleton';
 import Link from 'next/link';
 import type { ReactNode } from 'react';
 import type { SessionUser } from '@pulse/shared';

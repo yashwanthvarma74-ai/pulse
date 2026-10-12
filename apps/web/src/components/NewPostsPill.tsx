@@ -1,6 +1,6 @@
 'use client';
 
-import { Button } from '@yashwanthvarma74/react';
+import { Button } from '@yashwanthvarma74/react/components/Button';
 import styles from './NewPostsPill.module.css';
 
 // "New posts" instead of a feed that jumps. It only appears when someone you follow has published

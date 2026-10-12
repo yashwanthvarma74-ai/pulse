@@ -1,6 +1,9 @@
 'use client';
 
-import { Avatar, Menu, useTheme, type ThemePreference } from '@yashwanthvarma74/react';
+import { Avatar } from '@yashwanthvarma74/react/components/Avatar';
+import { Menu } from '@yashwanthvarma74/react/components/Menu';
+import type { ThemePreference } from '@yashwanthvarma74/react';
+import { useTheme } from '@/lib/theme';
 import { useRouter } from 'next/navigation';
 import type { SessionUser } from '@pulse/shared';
 import { useDemoAccounts, useDemoLogin, useLogout } from '@/lib/queries';

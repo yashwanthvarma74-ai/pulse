@@ -6,7 +6,7 @@
 import { writeFile } from 'node:fs/promises';
 import { parseArgs } from 'node:util';
 import { chromium } from '@playwright/test';
-import { API, WEB, login, round } from './lib.mjs';
+import { WEB, login, round } from './lib.mjs';
 
 const { values } = parseArgs({
   options: {
@@ -54,14 +54,11 @@ await page.evaluate(() => {
 });
 
 let loaded = 0;
-let scrollMs = 0;
 const checkpoints = [1000, 2500, 5000, 7500, target].filter((n) => n <= target);
 const started = performance.now();
 for (let step = 0; step < 4000 && loaded < target; step++) {
-  const before = performance.now();
   await page.mouse.wheel(0, 900);
   await page.waitForTimeout(40);
-  scrollMs += performance.now() - before;
   // how many posts the page has loaded: the last visible post's position
   loaded = await page.evaluate(() => {
     const last = [...document.querySelectorAll('[role="feed"] article')].at(-1);
@@ -89,4 +86,3 @@ const result = {
 console.log(JSON.stringify(result, null, 2));
 if (values.out) await writeFile(values.out, JSON.stringify(result, null, 2) + '\n');
 await browser.close();
-void API;

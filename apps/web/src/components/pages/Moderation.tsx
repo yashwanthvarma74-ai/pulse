@@ -1,16 +1,12 @@
 'use client';
 
-import {
-  Alert,
-  Badge,
-  Button,
-  Card,
-  CardBody,
-  CardFooter,
-  EmptyState,
-  Skeleton,
-  useToast,
-} from '@yashwanthvarma74/react';
+import { Alert } from '@yashwanthvarma74/react/components/Alert';
+import { Badge } from '@yashwanthvarma74/react/components/Badge';
+import { Button } from '@yashwanthvarma74/react/components/Button';
+import { Card, CardBody, CardFooter } from '@yashwanthvarma74/react/components/Card';
+import { EmptyState } from '@yashwanthvarma74/react/components/EmptyState';
+import { Skeleton } from '@yashwanthvarma74/react/components/Skeleton';
+import { useToast } from '@yashwanthvarma74/react/components/Toast';
 import type { Report } from '@pulse/shared';
 import { ApiError } from '@/lib/api';
 import { useReports, useResolveReport } from '@/lib/queries';

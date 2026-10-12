@@ -1,14 +1,12 @@
 'use client';
 
-import {
-  Alert,
-  Avatar,
-  Button,
-  FormField,
-  Skeleton,
-  Spinner,
-  Textarea,
-} from '@yashwanthvarma74/react';
+import { Alert } from '@yashwanthvarma74/react/components/Alert';
+import { Avatar } from '@yashwanthvarma74/react/components/Avatar';
+import { Button } from '@yashwanthvarma74/react/components/Button';
+import { FormField } from '@yashwanthvarma74/react/components/FormField';
+import { Skeleton } from '@yashwanthvarma74/react/components/Skeleton';
+import { Spinner } from '@yashwanthvarma74/react/components/Spinner';
+import { Textarea } from '@yashwanthvarma74/react/components/Textarea';
 import Link from 'next/link';
 import { useMemo, useState, type FormEvent } from 'react';
 import { POST_MAX_LENGTH, type SessionUser } from '@pulse/shared';
