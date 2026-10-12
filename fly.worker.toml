@@ -1,0 +1,22 @@
+# Deploy from the repository root:  fly deploy -c fly.worker.toml
+# NOT YET RUN on Fly. The worker listens on no public port; it only reads the queue.
+app = "pulse-worker"
+primary_region = "iad"
+
+[build]
+  dockerfile = "apps/worker/Dockerfile"
+
+[env]
+  NODE_ENV = "production"
+  STORAGE_DRIVER = "s3"
+  S3_REGION = "auto"
+  S3_BUCKET = "pulse-media"
+  LOG_LEVEL = "info"
+
+[metrics]
+  port = 9465
+  path = "/metrics"
+
+[[vm]]
+  size = "shared-cpu-1x"
+  memory = "512mb"

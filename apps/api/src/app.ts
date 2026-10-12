@@ -19,7 +19,7 @@ export function createApp(core: Core, logger: Logger): Express {
   const app = express();
   app.disable('x-powered-by');
   // behind the Next.js proxy and any load balancer, the client address is in X-Forwarded-For
-  app.set('trust proxy', 1);
+  app.set('trust proxy', core.config.TRUST_PROXY_HOPS);
 
   app.use(timeRequests);
   app.use(pinoHttp({ logger, autoLogging: { ignore: (req) => req.url === '/health' } }));

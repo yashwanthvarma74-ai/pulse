@@ -26,16 +26,17 @@ export async function readSession(token: string | undefined, secret: string) {
   }
 }
 
-export function setSessionCookie(res: Response, token: string, secure: boolean) {
+export function setSessionCookie(res: Response, token: string, secure: boolean, domain?: string) {
   res.cookie(SESSION_COOKIE, token, {
     httpOnly: true,
     sameSite: 'lax',
     secure,
     maxAge: SESSION_DAYS * 24 * 60 * 60 * 1000,
     path: '/',
+    domain,
   });
 }
 
-export function clearSessionCookie(res: Response, secure: boolean) {
-  res.clearCookie(SESSION_COOKIE, { httpOnly: true, sameSite: 'lax', secure, path: '/' });
+export function clearSessionCookie(res: Response, secure: boolean, domain?: string) {
+  res.clearCookie(SESSION_COOKIE, { httpOnly: true, sameSite: 'lax', secure, path: '/', domain });
 }

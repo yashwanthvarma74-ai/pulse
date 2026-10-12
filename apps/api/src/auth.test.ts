@@ -97,3 +97,15 @@ describe('health', () => {
     }
   });
 });
+
+describe('cookie domain', () => {
+  it('is set on the session cookie when configured, so the socket on another subdomain gets it', async () => {
+    const shared = await createApiContext({ COOKIE_DOMAIN: '.example.com' });
+    try {
+      const res = await shared.agent().post('/auth/guest').expect(201);
+      expect(res.headers['set-cookie']?.[0]).toMatch(/Domain=\.?example\.com/i);
+    } finally {
+      await shared.close();
+    }
+  });
+});

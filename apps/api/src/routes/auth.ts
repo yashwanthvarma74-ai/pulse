@@ -19,7 +19,12 @@ export function authRouter(core: Core): Router {
   const secure = core.config.NODE_ENV === 'production';
 
   async function signIn(res: Parameters<typeof setSessionCookie>[0], userId: string) {
-    setSessionCookie(res, await signSession(userId, core.config.JWT_SECRET), secure);
+    setSessionCookie(
+      res,
+      await signSession(userId, core.config.JWT_SECRET),
+      secure,
+      core.config.COOKIE_DOMAIN,
+    );
   }
 
   // Anyone can mint a guest, so the cost of doing it in a loop is capped per address.
@@ -34,7 +39,7 @@ export function authRouter(core: Core): Router {
   });
 
   router.post('/logout', (_req, res) => {
-    clearSessionCookie(res, secure);
+    clearSessionCookie(res, secure, core.config.COOKIE_DOMAIN);
     res.status(204).end();
   });
 

@@ -33,6 +33,12 @@ const envSchema = z.object({
   S3_ACCESS_KEY_ID: z.string().optional(),
   S3_SECRET_ACCESS_KEY: z.string().optional(),
 
+  // How many proxies sit in front of the API (Vercel and Fly make two), so rate limits see the real visitor.
+  TRUST_PROXY_HOPS: z.coerce.number().int().min(0).default(1),
+  // Set to the shared parent domain (for example .example.com) so the WebSocket on api.example.com gets
+  // the cookie that app.example.com set. Leave empty on localhost.
+  COOKIE_DOMAIN: z.string().optional(),
+
   // Posts and replies one address may write per minute. Raise it only for load tests.
   WRITE_RATE_LIMIT: z.coerce.number().int().positive().default(30),
 
