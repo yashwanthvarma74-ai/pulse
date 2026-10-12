@@ -47,7 +47,11 @@ export function attachGateway(server: Server, core: Core, logger: Logger): () =>
     if (!req.url?.startsWith('/ws')) return;
     try {
       // a page on another origin cannot open this socket with the visitor's cookie
-      if (req.headers.origin && req.headers.origin !== core.config.SITE_ORIGIN)
+      // (the configured site, or the same host the socket is being opened on, as behind one tunnel)
+      if (
+        req.headers.origin &&
+        !isAllowedOrigin(req.headers.origin, req.headers.host, core.config.SITE_ORIGIN)
+      )
         throw new Error('origin');
       const userId = await readSession(
         parseCookie(req.headers.cookie)[SESSION_COOKIE],
@@ -115,4 +119,13 @@ function parseCookie(header: string | undefined): Record<string, string> {
       cookies[part.slice(0, index).trim()] = decodeURIComponent(part.slice(index + 1).trim());
   }
   return cookies;
+}
+
+function isAllowedOrigin(origin: string, host: string | undefined, siteOrigin: string): boolean {
+  if (origin === siteOrigin) return true;
+  try {
+    return host !== undefined && new URL(origin).host === host;
+  } catch {
+    return false;
+  }
 }

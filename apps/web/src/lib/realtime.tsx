@@ -46,8 +46,11 @@ function readMessage(data: unknown): RealtimeMessage | null {
 }
 
 function socketUrl() {
-  if (process.env.NEXT_PUBLIC_WS_URL) return process.env.NEXT_PUBLIC_WS_URL;
   const scheme = window.location.protocol === 'https:' ? 'wss' : 'ws';
+  // "same-origin": the socket is on the page's own host at /ws, as when one proxy serves everything
+  if (process.env.NEXT_PUBLIC_WS_URL === 'same-origin')
+    return `${scheme}://${window.location.host}/ws`;
+  if (process.env.NEXT_PUBLIC_WS_URL) return process.env.NEXT_PUBLIC_WS_URL;
   return `${scheme}://${window.location.hostname}:4001/ws`;
 }
 

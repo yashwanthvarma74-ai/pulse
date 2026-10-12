@@ -4,6 +4,20 @@
 > behave locally. None of it has been run on a hosting provider, and `docker compose up` has not been run either
 > (Docker is not installed on the machine this was built on). Treat it as a starting point, not a record.
 
+## Free and temporary: a public link from your own laptop
+
+No account, no cost. The link works while your laptop is on and the script is running.
+
+```bash
+brew install cloudflared     # once
+scripts/share.sh
+```
+
+It seeds a database, builds and starts the stack with the demo accounts, serves everything on one port
+(`scripts/share.mjs`) and prints an `https://<random>.trycloudflare.com` address. Send that link; they can press
+**Continue as guest** or use the demo accounts. Press Ctrl+C to take it down. Anyone with the link can sign in as a
+demo account, so it is for showing people, not for leaving up.
+
 ## What has to run
 
 | Part    | What                                                       | Needs                                                  |
