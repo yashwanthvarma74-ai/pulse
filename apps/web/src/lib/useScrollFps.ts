@@ -18,6 +18,9 @@ export function useScrollFps(enabled: boolean) {
     let raf = 0;
     let idle: ReturnType<typeof setTimeout> | undefined;
     let lastReport = -Infinity;
+    // frames and time as of the latest scroll event, so the still period at the end is not counted
+    let framesAtLastScroll = 0;
+    let lastScrollAt = 0;
 
     const tick = () => {
       frames += 1;
@@ -25,10 +28,10 @@ export function useScrollFps(enabled: boolean) {
     };
     const finish = () => {
       cancelAnimationFrame(raf);
-      const elapsed = performance.now() - started - IDLE_MS;
+      const elapsed = lastScrollAt - started;
       if (elapsed >= MIN_SCROLL_MS && performance.now() - lastReport > REPORT_EVERY_MS) {
         lastReport = performance.now();
-        sendVitals({ scrollFps: Math.min(240, Math.round((frames / elapsed) * 1000)) });
+        sendVitals({ scrollFps: Math.min(240, Math.round((framesAtLastScroll / elapsed) * 1000)) });
       }
       started = 0;
     };
@@ -38,6 +41,8 @@ export function useScrollFps(enabled: boolean) {
         frames = 0;
         raf = requestAnimationFrame(tick);
       }
+      lastScrollAt = performance.now();
+      framesAtLastScroll = frames;
       clearTimeout(idle);
       idle = setTimeout(finish, IDLE_MS);
     };
