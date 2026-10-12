@@ -27,7 +27,7 @@ jobs:
     env:
       S3_TEST_ENDPOINT: http://127.0.0.1:9000
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - uses: actions/setup-node@v4
         with:
           node-version-file: .nvmrc
@@ -58,7 +58,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: checks
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - uses: actions/setup-node@v4
         with:
           node-version-file: .nvmrc
@@ -80,7 +80,7 @@ jobs:
         image: redis:8
         ports: ['6379:6379']
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - uses: actions/setup-node@v4
         with:
           node-version-file: .nvmrc
@@ -109,7 +109,7 @@ jobs:
         image: redis:8
         ports: ['6379:6379']
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - uses: actions/setup-node@v4
         with:
           node-version-file: .nvmrc
