@@ -7,10 +7,14 @@ export default tseslint.config(
   {
     ignores: [
       '**/dist/**',
-      '**/.next/**',
+      '**/.next*/**',
       '**/coverage/**',
       '**/node_modules/**',
       '**/next-env.d.ts',
+      '**/test-results/**',
+      '**/playwright-report/**',
+      '.data/**',
+      '.lighthouseci/**',
     ],
   },
   js.configs.recommended,

@@ -1,0 +1,134 @@
+module.exports = [
+  32870,
+  (a) => {
+    a.v({
+      body: 'UtvQCq_body',
+      footer: 'UtvQCq_footer',
+      list: 'UtvQCq_list',
+      meta: 'UtvQCq_meta',
+      page: 'UtvQCq_page',
+      title: 'UtvQCq_title',
+    });
+  },
+  62766,
+  (a) => {
+    'use strict';
+    var b = a.i(87924),
+      c = a.i(90985),
+      d = a.i(98441),
+      e = a.i(87436),
+      f = a.i(38185),
+      g = a.i(85135),
+      h = a.i(19272),
+      h = h,
+      i = a.i(30780),
+      j = a.i(64572),
+      k = a.i(20698),
+      l = a.i(69844),
+      m = a.i(21890),
+      n = a.i(81825),
+      o = a.i(83128),
+      p = a.i(32870);
+    function q() {
+      let a = (0, m.A)();
+      if (a.isPending) return (0, b.jsx)(j.f, { height: '8rem', 'aria-busy': 'true' });
+      if (a.isError) {
+        let d = a.error instanceof l.a && 403 === a.error.status;
+        return (0, b.jsx)(c.f, {
+          variant: d ? 'info' : 'danger',
+          title: d ? 'Moderators only' : 'The queue did not load',
+          children: d ? 'Switch to the moderator demo account to see the queue.' : a.error.message,
+        });
+      }
+      return (0, b.jsxs)('div', {
+        className: p.default.page,
+        children: [
+          (0, b.jsx)('h1', { className: p.default.title, children: 'Moderation queue' }),
+          0 === a.data.length
+            ? (0, b.jsx)(i.f, {
+                icon: 'check-circle',
+                title: 'The queue is empty',
+                description: 'Reported posts show up here for review.',
+              })
+            : (0, b.jsx)('ul', {
+                className: p.default.list,
+                children: a.data.map((a) =>
+                  (0, b.jsx)('li', { children: (0, b.jsx)(r, { report: a }) }, a.id),
+                ),
+              }),
+        ],
+      });
+    }
+    function r({ report: a }) {
+      let i = (0, m.m)(),
+        { toast: j } = (0, k.f)(),
+        l = (b) =>
+          i.mutate(
+            { id: a.id, action: b },
+            {
+              onSuccess: () =>
+                j({
+                  title: 'remove' === b ? 'Post removed' : 'Report dismissed',
+                  variant: 'success',
+                  duration: 2500,
+                }),
+            },
+          );
+      return (0, b.jsxs)(f.f, {
+        padding: 'none',
+        children: [
+          (0, b.jsxs)(g.f, {
+            className: p.default.body,
+            children: [
+              (0, b.jsxs)('p', {
+                className: p.default.meta,
+                children: [
+                  (0, b.jsx)(d.f, { variant: 'warning', children: a.reason }),
+                  ' ',
+                  a.reporter ? `Reported by @${a.reporter.handle}` : 'Flagged automatically',
+                  a.details &&
+                    (0, b.jsxs)('span', {
+                      className: p.default.details,
+                      children: [' · ', a.details],
+                    }),
+                ],
+              }),
+              (0, b.jsx)(n.f, { post: a.post, detail: !0 }),
+              i.isError && (0, b.jsx)(c.f, { variant: 'danger', children: i.error.message }),
+            ],
+          }),
+          (0, b.jsxs)(h.c, {
+            className: p.default.footer,
+            children: [
+              (0, b.jsx)(e.f, {
+                size: 'sm',
+                onClick: () => l('dismiss'),
+                disabled: i.isPending,
+                children: 'Keep it up',
+              }),
+              (0, b.jsx)(e.f, {
+                size: 'sm',
+                variant: 'danger',
+                onClick: () => l('remove'),
+                loading: i.isPending,
+                children: 'Remove post',
+              }),
+            ],
+          }),
+        ],
+      });
+    }
+    a.s(
+      [
+        'default',
+        0,
+        function () {
+          return (0, b.jsx)(o.f, { children: () => (0, b.jsx)(q, {}) });
+        },
+      ],
+      62766,
+    );
+  },
+];
+
+//# sourceMappingURL=apps_web_src_components_pages_0vjgptj6dpa58._.js.map

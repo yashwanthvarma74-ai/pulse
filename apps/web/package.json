@@ -14,12 +14,12 @@
   "dependencies": {
     "@pulse/shared": "*",
     "@tanstack/react-query": "^5.90.0",
+    "@tanstack/react-virtual": "^3.13.0",
     "@yashwanthvarma74/react": "^0.1.1",
     "@yashwanthvarma74/tokens": "^0.1.1",
     "next": "^16.0.0",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "zod": "^4.0.0"
+    "react-dom": "^19.0.0"
   },
   "devDependencies": {
     "@testing-library/dom": "^10.4.0",

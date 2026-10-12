@@ -9,3 +9,7 @@ coverage
 *.log
 *.tsbuildinfo
 next-env.d.ts
+.data
+test-results
+playwright-report
+.lighthouseci

@@ -1,10 +1,17 @@
+import { readFileSync } from 'node:fs';
 import { defineConfig } from 'tsup';
+
+// The workspace packages ship TypeScript source, so they are bundled in. Everything they depend on
+// from npm stays external and is installed normally (sharp is native and cannot be bundled).
+const core = JSON.parse(
+  readFileSync(new URL('../../packages/core/package.json', import.meta.url), 'utf8'),
+);
 
 export default defineConfig({
   entry: ['src/server.ts'],
   format: 'esm',
   target: 'node22',
   clean: true,
-  // the shared package ships TypeScript source, so it is bundled in
-  noExternal: ['@pulse/shared'],
+  noExternal: ['@pulse/core', '@pulse/shared'],
+  external: Object.keys(core.dependencies).filter((name) => !name.startsWith('@pulse/')),
 });

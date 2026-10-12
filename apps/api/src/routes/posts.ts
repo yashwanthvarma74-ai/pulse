@@ -1,35 +1,79 @@
 import { Router } from 'express';
-import { rateLimit } from 'express-rate-limit';
-import { ObjectId } from 'mongodb';
-import { createPostSchema } from '@pulse/shared';
-import type { Config } from '../config';
-import type { Database, PostDoc } from '../db';
-import { parse } from '../middleware/validate';
-import { requireUser } from '../middleware/session';
-import { withAuthors } from '../services/feed';
+import {
+  createPostSchema,
+  createReplySchema,
+  createReportSchema,
+  pageQuerySchema,
+} from '@pulse/shared';
+import {
+  addReaction,
+  createPost,
+  createReply,
+  explainPost,
+  getPostItem,
+  listReplies,
+  removeReaction,
+  reportPost,
+  type Core,
+} from '@pulse/core';
+import { idParam, limit, parse } from '../http';
+import { requireUser, viewerOf } from '../middleware';
 
-export function postsRouter(database: Database, config: Config): Router {
+export function postsRouter(core: Core): Router {
   const router = Router();
+  router.use(requireUser);
 
-  const writeLimit = rateLimit({
-    windowMs: 60 * 1000,
-    limit: config.NODE_ENV === 'test' ? 1000 : 30,
-    standardHeaders: 'draft-8',
-    legacyHeaders: false,
+  const writes = limit(core.config, 60 * 1000, 30);
+
+  router.post('/', writes, async (req, res) => {
+    // validated again inside createPost, which is also called from outside HTTP
+    const input = parse(createPostSchema, req.body);
+    res.status(201).json({ post: await createPost(core, req.user!, input) });
   });
 
-  router.post('/', requireUser, writeLimit, async (req, res) => {
-    const { text } = parse(createPostSchema, req.body);
-    const post: PostDoc = {
-      _id: new ObjectId(),
-      authorId: req.user!._id,
-      visibility: 'public',
-      text,
-      createdAt: new Date(),
-    };
-    await database.posts.insertOne(post);
-    const [item] = await withAuthors(database, [post]);
-    res.status(201).json({ post: item });
+  router.get('/:id', async (req, res) => {
+    res.json({
+      post: await getPostItem(core, await viewerOf(core, req), idParam(req, 'id', 'That post')),
+    });
+  });
+
+  router.get('/:id/why', async (req, res) => {
+    res.json(await explainPost(core, await viewerOf(core, req), idParam(req, 'id', 'That post')));
+  });
+
+  router.get('/:id/replies', async (req, res) => {
+    res.json(
+      await listReplies(
+        core,
+        await viewerOf(core, req),
+        idParam(req, 'id', 'That post'),
+        parse(pageQuerySchema, req.query),
+      ),
+    );
+  });
+
+  router.post('/:id/replies', writes, async (req, res) => {
+    const { text } = parse(createReplySchema, req.body);
+    const viewer = await viewerOf(core, req);
+    res.status(201).json({
+      post: await createReply(core, req.user!, viewer, idParam(req, 'id', 'That post'), text),
+    });
+  });
+
+  const reactions = limit(core.config, 60 * 1000, 120);
+  router.put('/:id/reaction', reactions, async (req, res) => {
+    res.json(await addReaction(core, await viewerOf(core, req), idParam(req, 'id', 'That post')));
+  });
+  router.delete('/:id/reaction', reactions, async (req, res) => {
+    res.json(
+      await removeReaction(core, await viewerOf(core, req), idParam(req, 'id', 'That post')),
+    );
+  });
+
+  router.post('/:id/report', limit(core.config, 60 * 1000, 20), async (req, res) => {
+    const input = parse(createReportSchema, req.body);
+    await reportPost(core, await viewerOf(core, req), idParam(req, 'id', 'That post'), input);
+    res.status(204).end();
   });
 
   return router;

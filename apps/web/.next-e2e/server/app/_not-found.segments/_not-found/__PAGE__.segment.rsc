@@ -1,0 +1,33 @@
+1:"$Sreact.fragment"
+2:"/_next/static/chunks/3m5pw3ucc4rxt.js"
+3:"/_next/static/chunks/0qtnrfarso40r.js"
+4:"/_next/static/chunks/034lom8zdab62.js"
+5:"/_next/static/chunks/0-qcsr-17a_rd.js"
+6:I[43721,["$2","$3","$4","$5"],"default"]
+7:I[2268,["$2","$3","$4","$5"],"default"]
+8:I[5722,["$2","$3","$4","$5"],"default"]
+9:I[39756,["$2","$3","$4","$5"],"default"]
+a:I[37457,["$2","$3","$4","$5"],"default"]
+b:I[22016,["$2","$3","$4","$5"],""]
+12:I[97367,["$2","$3","$4","$5"],"OutletBoundary"]
+13:"$Sreact.suspense"
+16:"ViewportBoundary"
+17:I[97367,["$2","$3","$4","$5"],"$16"]
+18:"MetadataBoundary"
+19:I[97367,["$2","$3","$4","$5"],"$18"]
+:HL["/_next/static/chunks/3fvaftkrg7v5k.css","style"]
+d:X
+10:X
+10:C
+11:[["children",{"s":"__PAGE__","h":160,"d":{"r":["$","$1","c",{"children":[["$","section",null,{"children":[["$","h1",null,{"children":"Page not found"}],["$","p",null,{"children":["That page does not exist. ",["$","$Lb",null,{"href":"/","children":"Back to the feed"}]]}]]}],null,["$","$L12",null,{"children":["$","$13",null,{"name":"Next.MetadataOutlet","children":"$@14"}]}]]}],"p":"$@15","v":null,"s":"$d"}}]]
+e:[["children",{"s":"/_not-found","h":96,"d":{"r":["$","$1","c",{"children":[null,["$","$L9",null,{"parallelRouterKey":"children","template":["$","$La",null,{}]}]]}],"p":"$@f","v":"$10","s":"$d"},"c":"$Q11"}]]
+0:{"t":{"t":{"s":"","h":80,"d":{"r":["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/3fvaftkrg7v5k.css","precedence":"next"}],["$","script","script-0",{"src":"/_next/static/chunks/3m5pw3ucc4rxt.js","async":true}],["$","script","script-1",{"src":"/_next/static/chunks/0qtnrfarso40r.js","async":true}],["$","script","script-2",{"src":"/_next/static/chunks/034lom8zdab62.js","async":true}],["$","script","script-3",{"src":"/_next/static/chunks/0-qcsr-17a_rd.js","async":true}]],["$","html",null,{"lang":"en","className":"LINzvG_variable","suppressHydrationWarning":true,"children":[["$","head",null,{"children":["$","$L6",null,{}]}],["$","body",null,{"children":["$","$L7",null,{"children":[["$","a",null,{"href":"#main","className":"WKFhta_skipLink","children":"Skip to main content"}],["$","$L8",null,{}],["$","main",null,{"id":"main","tabIndex":-1,"className":"WKFhta_main","children":["$","$L9",null,{"parallelRouterKey":"children","template":["$","$La",null,{}],"notFound":[["$","section",null,{"children":[["$","h1",null,{"children":"Page not found"}],["$","p",null,{"children":["That page does not exist. ",["$","$Lb",null,{"href":"/","children":"Back to the feed"}]]}]]}],[]]}]}]]}]}]]}]]}],"p":"$@c","v":null,"s":"$d"},"c":"$Qe"},"h":{"r":["$","$1","h",{"children":[["$","meta",null,{"name":"robots","content":"noindex"}],["$","$L17",null,{"children":[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]}],["$","$L19",null,{"children":[["$","div",null,{"hidden":true,"children":["$","$13",null,{"name":"Next.Metadata","children":[["$","title","0",{"children":"Pulse"}],["$","meta","1",{"name":"description","content":"A social feed and communities app that stays fast, correct and private as it grows."}]]}]}],null]}],["$","meta",null,{"name":"next-size-adjust","content":""}]]}],"p":"$@1a","v":null,"s":"$d"}},"a":"$@1b","u":"$@1c","b":"R4LdstvjRilS2XfUHRor5"}
+14:null
+d:300
+1c:true
+d:C
+1b:0
+f:"$undefined"
+c:"$undefined"
+1a:"$undefined"
+15:"$undefined"

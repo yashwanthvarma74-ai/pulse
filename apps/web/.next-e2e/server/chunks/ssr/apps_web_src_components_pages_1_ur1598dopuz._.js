@@ -1,0 +1,131 @@
+module.exports = [
+  99221,
+  (a) => {
+    a.v({
+      excerpt: 'ZJotAW_excerpt',
+      item: 'ZJotAW_item',
+      list: 'ZJotAW_list',
+      page: 'ZJotAW_page',
+      text: 'ZJotAW_text',
+      time: 'ZJotAW_time',
+      title: 'ZJotAW_title',
+      unread: 'ZJotAW_unread',
+    });
+  },
+  35206,
+  (a) => {
+    'use strict';
+    var b = a.i(87924),
+      c = a.i(90985),
+      d = a.i(35033),
+      e = a.i(87436),
+      f = a.i(30780),
+      g = a.i(64572),
+      h = a.i(38246),
+      i = a.i(72131),
+      j = a.i(21890),
+      k = a.i(25255),
+      l = a.i(83128),
+      m = a.i(99221);
+    let n = {
+      mention: 'mentioned you in a post',
+      reply: 'replied to your post',
+      reaction: 'liked your post',
+      follow: 'started following you',
+    };
+    function o() {
+      let a = (0, j.I)(),
+        l = (0, j.P)(),
+        o = (0, i.useMemo)(() => a.data?.pages.flatMap((a) => a.items) ?? [], [a.data]),
+        p = o.some((a) => !a.read),
+        { mutate: q } = l;
+      return (
+        (0, i.useEffect)(() => {
+          if (a.isSuccess && p) {
+            let a = setTimeout(() => q(), 1500);
+            return () => clearTimeout(a);
+          }
+        }, [a.isSuccess, p, q]),
+        (0, b.jsxs)('div', {
+          className: m.default.page,
+          children: [
+            (0, b.jsx)('h1', { className: m.default.title, children: 'Notifications' }),
+            a.isPending && (0, b.jsx)(g.f, { height: '8rem', 'aria-busy': 'true' }),
+            a.isError && (0, b.jsx)(c.f, { variant: 'danger', children: a.error.message }),
+            a.isSuccess &&
+              0 === o.length &&
+              (0, b.jsx)(f.f, {
+                icon: 'inbox',
+                title: 'Nothing yet',
+                description: 'Mentions, replies, likes and new followers show up here.',
+              }),
+            (0, b.jsx)('ul', {
+              className: m.default.list,
+              children: o.map((a) =>
+                (0, b.jsxs)(
+                  'li',
+                  {
+                    className: m.default.item,
+                    'data-unread': !a.read || void 0,
+                    children: [
+                      (0, b.jsx)(d.f, { name: a.actor.name }),
+                      (0, b.jsxs)('div', {
+                        className: m.default.text,
+                        children: [
+                          (0, b.jsxs)('p', {
+                            children: [
+                              (0, b.jsx)(h.default, {
+                                href: `/u/${a.actor.handle}`,
+                                children: a.actor.name,
+                              }),
+                              ' ',
+                              n[a.type],
+                              !a.read &&
+                                (0, b.jsx)('span', {
+                                  className: m.default.unread,
+                                  children: ' (new)',
+                                }),
+                            ],
+                          }),
+                          a.postText &&
+                            (0, b.jsx)('p', {
+                              className: m.default.excerpt,
+                              children: (0, b.jsx)(h.default, {
+                                href: `/p/${a.postId}`,
+                                children: a.postText,
+                              }),
+                            }),
+                        ],
+                      }),
+                      (0, b.jsx)('time', {
+                        className: m.default.time,
+                        dateTime: a.createdAt,
+                        children: (0, k.f)(a.createdAt),
+                      }),
+                    ],
+                  },
+                  a.id,
+                ),
+              ),
+            }),
+            a.hasNextPage &&
+              (0, b.jsx)(e.f, {
+                loading: a.isFetchingNextPage,
+                onClick: () => a.fetchNextPage(),
+                children: 'Load older',
+              }),
+          ],
+        })
+      );
+    }
+    a.s([
+      'default',
+      0,
+      function () {
+        return (0, b.jsx)(l.f, { children: () => (0, b.jsx)(o, {}) });
+      },
+    ]);
+  },
+];
+
+//# sourceMappingURL=apps_web_src_components_pages_1_ur1598dopuz._.js.map

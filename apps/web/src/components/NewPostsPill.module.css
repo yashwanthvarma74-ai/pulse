@@ -1,0 +1,12 @@
+.wrap {
+  position: sticky;
+  top: 4.25rem;
+  z-index: var(--mrd-z-dropdown);
+  display: flex;
+  justify-content: center;
+  height: 0;
+}
+
+.pill {
+  box-shadow: var(--mrd-shadow-md);
+}

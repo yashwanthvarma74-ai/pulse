@@ -35,3 +35,7 @@ export function setSessionCookie(res: Response, token: string, secure: boolean) 
     path: '/',
   });
 }
+
+export function clearSessionCookie(res: Response, secure: boolean) {
+  res.clearCookie(SESSION_COOKIE, { httpOnly: true, sameSite: 'lax', secure, path: '/' });
+}

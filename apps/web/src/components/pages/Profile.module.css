@@ -1,0 +1,40 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--mrd-space-6);
+}
+
+.header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--mrd-space-4);
+}
+
+.who {
+  flex: 1;
+  min-width: 10rem;
+}
+
+.name {
+  font-size: var(--mrd-font-size-3xl);
+  font-weight: var(--mrd-font-weight-bold);
+  letter-spacing: var(--mrd-font-tracking-tight);
+  line-height: var(--mrd-font-line-height-tight);
+}
+
+.handle,
+.counts,
+.note {
+  color: var(--mrd-color-text-secondary);
+}
+
+.counts strong {
+  color: var(--mrd-color-text-primary);
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: var(--mrd-space-2);
+}

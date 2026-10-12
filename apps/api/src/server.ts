@@ -1,21 +1,23 @@
 import { pino } from 'pino';
+import { createCore, loadConfig, startMetrics } from '@pulse/core';
 import { createApp } from './app';
-import { loadConfig } from './config';
-import { connect, ensureIndexes } from './db';
+import { attachGateway } from './gateway';
 
 const config = loadConfig();
 const logger = pino({ level: config.LOG_LEVEL });
+const stopMetrics = startMetrics('pulse-api', Number(process.env.API_METRICS_PORT ?? 9464));
 
-const database = await connect(config.MONGODB_URI);
-await ensureIndexes(database);
-
-const server = createApp(database, config, logger).listen(config.API_PORT, () => {
+const core = await createCore(config, { logger });
+const server = createApp(core, logger).listen(config.API_PORT, () => {
   logger.info(`API listening on port ${config.API_PORT}`);
 });
+const closeGateway = attachGateway(server, core, logger);
 
 async function shutdown() {
   server.close();
-  await database.client.close();
+  await closeGateway();
+  await core.close();
+  await stopMetrics();
   process.exit(0);
 }
 process.on('SIGINT', shutdown);

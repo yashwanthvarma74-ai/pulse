@@ -1,0 +1,21 @@
+.grid {
+  display: grid;
+  gap: var(--mrd-space-2);
+  margin-top: var(--mrd-space-3);
+}
+
+.grid[data-count='2'],
+.grid[data-count='3'],
+.grid[data-count='4'] {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.image {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 28rem;
+  border-radius: var(--mrd-radius-lg);
+  background: var(--mrd-color-bg-muted);
+  object-fit: cover;
+}

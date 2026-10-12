@@ -1,0 +1,207 @@
+(globalThis.TURBOPACK || (globalThis.TURBOPACK = [])).push([
+  'object' == typeof document ? document.currentScript : void 0,
+  [
+    14346,
+    (e) => {
+      var t = e.i(43476),
+        i = e.i(60450),
+        a = e.i(70684),
+        r = e.i(32345),
+        s = e.i(22016),
+        n = e.i(48804);
+      e.s([
+        'f',
+        0,
+        function ({ children: e }) {
+          let l = (0, n.U)();
+          return l.isPending
+            ? (0, t.jsx)(r.f, { height: '8rem', 'aria-busy': 'true' })
+            : l.isError
+              ? (0, t.jsx)(i.f, {
+                  variant: 'danger',
+                  title: 'Could not reach Pulse',
+                  children: (0, t.jsx)(a.f, {
+                    size: 'sm',
+                    onClick: () => l.refetch(),
+                    children: 'Try again',
+                  }),
+                })
+              : l.data
+                ? (0, t.jsx)(t.Fragment, { children: e(l.data) })
+                : (0, t.jsx)(i.f, {
+                    variant: 'info',
+                    title: 'Sign in to continue',
+                    children: (0, t.jsx)(s.default, {
+                      href: '/',
+                      children: 'Go to the start page',
+                    }),
+                  });
+        },
+      ]);
+    },
+    25442,
+    (e) => {
+      var t = e.i(43476),
+        i = e.i(60450),
+        a = e.i(64300),
+        r = e.i(70684),
+        s = e.i(59760),
+        n = e.i(32345),
+        l = e.i(22016),
+        o = e.i(71645),
+        d = e.i(48804),
+        c = e.i(47730),
+        u = e.i(14346),
+        f = e.i(59994);
+      let h = {
+        mention: 'mentioned you in a post',
+        reply: 'replied to your post',
+        reaction: 'liked your post',
+        follow: 'started following you',
+      };
+      function m() {
+        let e = (0, d.I)(),
+          u = (0, d.P)(),
+          m = (0, o.useMemo)(() => e.data?.pages.flatMap((e) => e.items) ?? [], [e.data]),
+          x = m.some((e) => !e.read),
+          { mutate: g } = u;
+        return (
+          (0, o.useEffect)(() => {
+            if (e.isSuccess && x) {
+              let e = setTimeout(() => g(), 1500);
+              return () => clearTimeout(e);
+            }
+          }, [e.isSuccess, x, g]),
+          (0, t.jsxs)('div', {
+            className: f.default.page,
+            children: [
+              (0, t.jsx)('h1', { className: f.default.title, children: 'Notifications' }),
+              e.isPending && (0, t.jsx)(n.f, { height: '8rem', 'aria-busy': 'true' }),
+              e.isError && (0, t.jsx)(i.f, { variant: 'danger', children: e.error.message }),
+              e.isSuccess &&
+                0 === m.length &&
+                (0, t.jsx)(s.f, {
+                  icon: 'inbox',
+                  title: 'Nothing yet',
+                  description: 'Mentions, replies, likes and new followers show up here.',
+                }),
+              (0, t.jsx)('ul', {
+                className: f.default.list,
+                children: m.map((e) =>
+                  (0, t.jsxs)(
+                    'li',
+                    {
+                      className: f.default.item,
+                      'data-unread': !e.read || void 0,
+                      children: [
+                        (0, t.jsx)(a.f, { name: e.actor.name }),
+                        (0, t.jsxs)('div', {
+                          className: f.default.text,
+                          children: [
+                            (0, t.jsxs)('p', {
+                              children: [
+                                (0, t.jsx)(l.default, {
+                                  href: `/u/${e.actor.handle}`,
+                                  children: e.actor.name,
+                                }),
+                                ' ',
+                                h[e.type],
+                                !e.read &&
+                                  (0, t.jsx)('span', {
+                                    className: f.default.unread,
+                                    children: ' (new)',
+                                  }),
+                              ],
+                            }),
+                            e.postText &&
+                              (0, t.jsx)('p', {
+                                className: f.default.excerpt,
+                                children: (0, t.jsx)(l.default, {
+                                  href: `/p/${e.postId}`,
+                                  children: e.postText,
+                                }),
+                              }),
+                          ],
+                        }),
+                        (0, t.jsx)('time', {
+                          className: f.default.time,
+                          dateTime: e.createdAt,
+                          children: (0, c.f)(e.createdAt),
+                        }),
+                      ],
+                    },
+                    e.id,
+                  ),
+                ),
+              }),
+              e.hasNextPage &&
+                (0, t.jsx)(r.f, {
+                  loading: e.isFetchingNextPage,
+                  onClick: () => e.fetchNextPage(),
+                  children: 'Load older',
+                }),
+            ],
+          })
+        );
+      }
+      e.s([
+        'default',
+        0,
+        function () {
+          return (0, t.jsx)(u.f, { children: () => (0, t.jsx)(m, {}) });
+        },
+      ]);
+    },
+    47730,
+    (e) => {
+      let t = new Intl.DateTimeFormat('en', { month: 'short', day: 'numeric' }),
+        i = new Intl.DateTimeFormat('en', { month: 'short', day: 'numeric', year: 'numeric' });
+      e.s([
+        'f',
+        0,
+        function (e, a = new Date()) {
+          let r = new Date(e),
+            s = a.getTime() - r.getTime();
+          return s < 6e4
+            ? 'just now'
+            : s < 36e5
+              ? `${Math.floor(s / 6e4)}m`
+              : s < 864e5
+                ? `${Math.floor(s / 36e5)}h`
+                : s < 6048e5
+                  ? `${Math.floor(s / 864e5)}d`
+                  : (r.getFullYear() === a.getFullYear() ? t : i).format(r);
+        },
+      ]);
+    },
+    60450,
+    70684,
+    32345,
+    (e) => {
+      var t = e.i(42667);
+      e.s(['f', () => t.A], 60450);
+      var i = e.i(66078);
+      e.s(['f', () => i.B], 70684);
+      var a = e.i(21143);
+      e.s(['f', () => a.S], 32345);
+    },
+    59760,
+    (e) => {
+      var t = e.i(79928);
+      e.s(['f', () => t.E]);
+    },
+  ],
+  59994,
+  (e) => {
+    e.v({
+      excerpt: 'ZJotAW_excerpt',
+      item: 'ZJotAW_item',
+      list: 'ZJotAW_list',
+      page: 'ZJotAW_page',
+      text: 'ZJotAW_text',
+      time: 'ZJotAW_time',
+      title: 'ZJotAW_title',
+      unread: 'ZJotAW_unread',
+    });
+  },
+]);

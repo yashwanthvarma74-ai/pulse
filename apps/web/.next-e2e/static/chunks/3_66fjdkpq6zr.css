@@ -1,0 +1,48 @@
+.ZJotAW_page {
+  gap: var(--mrd-space-4);
+  flex-direction: column;
+  display: flex;
+}
+.ZJotAW_title {
+  font-size: var(--mrd-font-size-3xl);
+  font-weight: var(--mrd-font-weight-bold);
+  letter-spacing: var(--mrd-font-tracking-tight);
+}
+.ZJotAW_list {
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+}
+.ZJotAW_item {
+  align-items: flex-start;
+  gap: var(--mrd-space-3);
+  padding: var(--mrd-space-3) var(--mrd-space-2);
+  border-bottom: var(--mrd-border-width-thin) solid var(--mrd-color-border-subtle);
+  display: flex;
+}
+.ZJotAW_item[data-unread] {
+  background: var(--mrd-color-accent-subtle);
+}
+.ZJotAW_text {
+  flex: 1;
+  min-width: 0;
+}
+.ZJotAW_excerpt {
+  margin-top: var(--mrd-space-1);
+  color: var(--mrd-color-text-secondary);
+  font-size: var(--mrd-font-size-md);
+}
+.ZJotAW_excerpt a {
+  color: inherit;
+}
+.ZJotAW_unread {
+  font-weight: var(--mrd-font-weight-semibold);
+  color: var(--mrd-color-accent-text);
+}
+.ZJotAW_time {
+  color: var(--mrd-color-text-secondary);
+  font-size: var(--mrd-font-size-sm);
+  white-space: nowrap;
+}

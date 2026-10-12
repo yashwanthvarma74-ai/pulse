@@ -12,6 +12,11 @@
   line-height: var(--mrd-font-line-height-tight);
 }
 
+.subtitle {
+  font-size: var(--mrd-font-size-xl);
+  font-weight: var(--mrd-font-weight-semibold);
+}
+
 .pitch {
   max-width: 30rem;
   color: var(--mrd-color-text-secondary);
@@ -27,6 +32,36 @@
 }
 
 .note {
-  color: var(--mrd-color-text-tertiary);
+  color: var(--mrd-color-text-secondary);
   font-size: var(--mrd-font-size-md);
+}
+
+.demo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--mrd-space-2);
+  margin-top: var(--mrd-space-8);
+  padding-top: var(--mrd-space-6);
+  border-top: var(--mrd-border-width-thin) solid var(--mrd-color-border-subtle);
+}
+
+.accounts {
+  display: flex;
+  flex-direction: column;
+  gap: var(--mrd-space-3);
+  margin: var(--mrd-space-2) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.accounts li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--mrd-space-1) var(--mrd-space-3);
+}
+
+.role {
+  color: var(--mrd-color-text-secondary);
+  font-size: var(--mrd-font-size-sm);
 }

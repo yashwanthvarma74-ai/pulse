@@ -16,7 +16,7 @@
 
 .main {
   width: 100%;
-  max-width: 40rem;
+  max-width: 44rem;
   margin: 0 auto;
   padding: var(--mrd-space-6) var(--mrd-space-4) var(--mrd-space-12);
 }

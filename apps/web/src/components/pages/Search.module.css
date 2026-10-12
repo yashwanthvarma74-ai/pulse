@@ -1,0 +1,45 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--mrd-space-4);
+}
+
+.title {
+  font-size: var(--mrd-font-size-3xl);
+  font-weight: var(--mrd-font-weight-bold);
+  letter-spacing: var(--mrd-font-tracking-tight);
+}
+
+.subtitle {
+  margin-bottom: var(--mrd-space-3);
+  font-size: var(--mrd-font-size-xl);
+  font-weight: var(--mrd-font-weight-semibold);
+}
+
+.people,
+.posts {
+  display: flex;
+  flex-direction: column;
+  gap: var(--mrd-space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.person {
+  display: flex;
+  align-items: center;
+  gap: var(--mrd-space-3);
+  padding: var(--mrd-space-2);
+  border-radius: var(--mrd-radius-md);
+  color: var(--mrd-color-text-primary);
+  text-decoration: none;
+}
+
+.person:hover {
+  background: var(--mrd-color-bg-muted);
+}
+
+.handle {
+  color: var(--mrd-color-text-secondary);
+}

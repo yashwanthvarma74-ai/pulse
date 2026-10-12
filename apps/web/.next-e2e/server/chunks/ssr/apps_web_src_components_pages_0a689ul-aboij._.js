@@ -1,0 +1,124 @@
+module.exports = [
+  97196,
+  (a) => {
+    a.v({
+      list: 'qbHc2W_list',
+      muted: 'qbHc2W_muted',
+      page: 'qbHc2W_page',
+      row: 'qbHc2W_row',
+      section: 'qbHc2W_section',
+      subtitle: 'qbHc2W_subtitle',
+      title: 'qbHc2W_title',
+    });
+  },
+  24426,
+  (a) => {
+    'use strict';
+    var b = a.i(87924),
+      c = a.i(90985),
+      d = a.i(87436),
+      e = a.i(31459),
+      f = a.i(38579),
+      g = a.i(64572),
+      h = a.i(20698),
+      i = a.i(38246),
+      j = a.i(21890),
+      k = a.i(83128),
+      l = a.i(97196);
+    function m({ user: a }) {
+      let d = (0, j.W)(),
+        i = (0, j.k)(),
+        { toast: k } = (0, h.f)();
+      return (0, b.jsxs)('div', {
+        className: l.default.page,
+        children: [
+          (0, b.jsx)('h1', { className: l.default.title, children: 'Settings' }),
+          (0, b.jsxs)('section', {
+            'aria-labelledby': 'privacy',
+            className: l.default.section,
+            children: [
+              (0, b.jsx)('h2', {
+                id: 'privacy',
+                className: l.default.subtitle,
+                children: 'Privacy',
+              }),
+              (0, b.jsx)(e.f, {
+                label: 'Who can see your new posts',
+                description:
+                  'Applies to posts you write outside a community. You can still change it for each post.',
+                children: (0, b.jsxs)(f.f, {
+                  value: a.defaultVisibility,
+                  disabled: d.isPending,
+                  onChange: (a) =>
+                    d.mutate(a.target.value, {
+                      onSuccess: () => k({ title: 'Saved', variant: 'success', duration: 2e3 }),
+                    }),
+                  children: [
+                    (0, b.jsx)('option', { value: 'public', children: 'Everyone' }),
+                    (0, b.jsx)('option', { value: 'followers', children: 'Only my followers' }),
+                  ],
+                }),
+              }),
+              d.isError && (0, b.jsx)(c.f, { variant: 'danger', children: d.error.message }),
+            ],
+          }),
+          (0, b.jsxs)('section', {
+            'aria-labelledby': 'blocked',
+            className: l.default.section,
+            children: [
+              (0, b.jsx)('h2', {
+                id: 'blocked',
+                className: l.default.subtitle,
+                children: 'Blocked people',
+              }),
+              i.isPending && (0, b.jsx)(g.f, { height: '3rem', 'aria-busy': 'true' }),
+              i.isError && (0, b.jsx)(c.f, { variant: 'danger', children: i.error.message }),
+              i.data &&
+                0 === i.data.length &&
+                (0, b.jsx)('p', {
+                  className: l.default.muted,
+                  children: 'You have not blocked anyone.',
+                }),
+              (0, b.jsx)('ul', {
+                className: l.default.list,
+                children: i.data?.map((a) =>
+                  (0, b.jsx)(n, { handle: a.handle, name: a.name }, a.id),
+                ),
+              }),
+            ],
+          }),
+        ],
+      });
+    }
+    function n({ handle: a, name: c }) {
+      let { unblock: e } = (0, j.O)(a);
+      return (0, b.jsxs)('li', {
+        className: l.default.row,
+        children: [
+          (0, b.jsxs)('span', {
+            children: [
+              (0, b.jsx)(i.default, { href: `/u/${a}`, children: c }),
+              ' ',
+              (0, b.jsxs)('span', { className: l.default.muted, children: ['@', a] }),
+            ],
+          }),
+          (0, b.jsx)(d.f, {
+            size: 'sm',
+            loading: e.isPending,
+            onClick: () => e.mutate(),
+            children: 'Unblock',
+          }),
+        ],
+      });
+    }
+    a.s([
+      'default',
+      0,
+      function () {
+        return (0, b.jsx)(k.f, { children: (a) => (0, b.jsx)(m, { user: a }) });
+      },
+    ]);
+  },
+];
+
+//# sourceMappingURL=apps_web_src_components_pages_0a689ul-aboij._.js.map

@@ -1,0 +1,291 @@
+module.exports = [
+  38523,
+  (a) => {
+    a.v({
+      body: 'd-ODkW_body',
+      composer: 'd-ODkW_composer',
+      count: 'd-ODkW_count',
+      failed: 'd-ODkW_failed',
+      footer: 'd-ODkW_footer',
+      images: 'd-ODkW_images',
+      remove: 'd-ODkW_remove',
+      submit: 'd-ODkW_submit',
+      thumb: 'd-ODkW_thumb',
+      tile: 'd-ODkW_tile',
+      tools: 'd-ODkW_tools',
+      visibility: 'd-ODkW_visibility',
+    });
+  },
+  82530,
+  (a) => {
+    'use strict';
+    var b = a.i(87924),
+      c = a.i(33217),
+      d = a.i(90985),
+      e = a.i(35033),
+      f = a.i(87436),
+      g = a.i(31459),
+      h = a.i(56061),
+      h = h,
+      i = a.i(57188),
+      i = i,
+      j = a.i(38579),
+      k = a.i(64572),
+      l = a.i(52728),
+      m = a.i(20698),
+      n = a.i(72131);
+    a.i(9241);
+    var o = a.i(94455),
+      p = a.i(69844);
+    let q = (a) => `pulse:draft:${a}`;
+    var r = a.i(21890),
+      s = a.i(38523);
+    function t({ image: a, onUpdate: d, onRemove: e }) {
+      return (
+        (0, c.f)({
+          queryKey: ['image-status', a.id],
+          enabled: 'processing' === a.status,
+          refetchInterval: 700,
+          queryFn: async () => {
+            let b = await p.k.imageStatus(a.id);
+            return ('processing' !== b.status && d(b), b);
+          },
+        }),
+        (0, b.jsxs)('div', {
+          className: s.default.tile,
+          children: [
+            'ready' === a.status &&
+              (0, b.jsx)('img', {
+                src: `/api/media/${a.id}/320`,
+                alt: 'Attached to your post',
+                className: s.default.thumb,
+              }),
+            'processing' === a.status && (0, b.jsx)(k.f, { className: s.default.thumb }),
+            'failed' === a.status &&
+              (0, b.jsx)('p', {
+                className: s.default.failed,
+                children: 'Could not process this image.',
+              }),
+            (0, b.jsx)(h.I, {
+              label: 'Remove image',
+              size: 'sm',
+              variant: 'secondary',
+              className: s.default.remove,
+              icon: (0, b.jsx)(i.I, { name: 'close', size: 14 }),
+              onClick: e,
+            }),
+          ],
+        })
+      );
+    }
+    a.s(
+      [
+        'f',
+        0,
+        function ({ user: a, community: c, feedKeys: h }) {
+          let k = `${a.id}:${c?.id ?? 'home'}`,
+            [u, v] = (0, n.useState)(() =>
+              (function (a) {
+                try {
+                  return window.localStorage.getItem(q(a)) ?? '';
+                } catch {
+                  return '';
+                }
+              })(k),
+            ),
+            [w, x] = (0, n.useState)(c ? 'public' : a.defaultVisibility),
+            [y, z] = (0, n.useState)([]),
+            [A, B] = (0, n.useState)(0),
+            [C, D] = (0, n.useState)(null),
+            E = (0, n.useRef)(null),
+            { toast: F } = (0, m.f)(),
+            G = (0, r.$)({ feedKeys: h }),
+            H = u.length,
+            I = H > o.T,
+            J = y.some((a) => 'processing' === a.status),
+            K = (u.trim().length > 0 || y.length > 0) && !I && !J && 0 === A;
+          function L(a) {
+            v(a);
+            try {
+              a ? window.localStorage.setItem(q(k), a) : window.localStorage.removeItem(q(k));
+            } catch {}
+          }
+          async function M(a) {
+            if (!a) return;
+            D(null);
+            let b = o.r - y.length,
+              c = Array.from(a).slice(0, b);
+            for (let d of (a.length > b && D(`You can add up to ${o.r} images to a post.`), c)) {
+              B((a) => a + 1);
+              try {
+                let a = await p.k.uploadImage(d);
+                z((b) => [...b, a]);
+              } catch (a) {
+                D(a.message);
+              } finally {
+                B((a) => a - 1);
+              }
+            }
+            E.current && (E.current.value = '');
+          }
+          return (0, b.jsxs)('form', {
+            className: s.default.composer,
+            onSubmit: function (a) {
+              (a.preventDefault(),
+                K &&
+                  !G.isPending &&
+                  G.mutate(
+                    { text: u, visibility: w, communityId: c?.id, mediaIds: y.map((a) => a.id) },
+                    {
+                      onSuccess: () => {
+                        (L(''),
+                          z([]),
+                          F({
+                            title: c ? `Posted in ${c.name}` : 'Posted',
+                            variant: 'success',
+                            duration: 2500,
+                          }));
+                      },
+                    },
+                  ));
+            },
+            'aria-label': c ? `New post in ${c.name}` : 'New post',
+            children: [
+              (0, b.jsx)(e.f, { name: a.name, size: 'lg' }),
+              (0, b.jsxs)('div', {
+                className: s.default.body,
+                children: [
+                  (0, b.jsx)(g.f, {
+                    label: c ? `Post in ${c.name}` : 'What is on your mind?',
+                    description: 'Mention people with @handle.',
+                    error: I ? `That is ${H - o.T} too many characters.` : void 0,
+                    children: (0, b.jsx)(l.f, {
+                      rows: 3,
+                      resize: 'none',
+                      value: u,
+                      onChange: (a) => L(a.target.value),
+                      placeholder: 'Share something',
+                    }),
+                  }),
+                  y.length > 0 &&
+                    (0, b.jsx)('ul', {
+                      className: s.default.images,
+                      'aria-label': 'Attached images',
+                      children: y.map((a) =>
+                        (0, b.jsx)(
+                          'li',
+                          {
+                            children: (0, b.jsx)(t, {
+                              image: a,
+                              onUpdate: (a) => z((b) => b.map((b) => (b.id === a.id ? a : b))),
+                              onRemove: () => z((b) => b.filter((b) => b.id !== a.id)),
+                            }),
+                          },
+                          a.id,
+                        ),
+                      ),
+                    }),
+                  C && (0, b.jsx)(d.f, { variant: 'warning', children: C }),
+                  G.isError &&
+                    (0, b.jsxs)(d.f, {
+                      variant: 'danger',
+                      title: 'Your post was not published',
+                      children: [G.error.message, ' Your text is still here.'],
+                    }),
+                  (0, b.jsxs)('div', {
+                    className: s.default.footer,
+                    children: [
+                      (0, b.jsxs)('div', {
+                        className: s.default.tools,
+                        children: [
+                          (0, b.jsx)('input', {
+                            ref: E,
+                            type: 'file',
+                            accept: 'image/jpeg,image/png,image/webp,image/gif',
+                            multiple: !0,
+                            hidden: !0,
+                            onChange: (a) => void M(a.target.files),
+                            'aria-label': 'Choose images',
+                            tabIndex: -1,
+                          }),
+                          (0, b.jsx)(f.f, {
+                            variant: 'ghost',
+                            size: 'sm',
+                            leadingIcon: (0, b.jsx)(i.I, { name: 'plus', size: 16 }),
+                            loading: A > 0,
+                            disabled: y.length >= o.r,
+                            onClick: () => E.current?.click(),
+                            children: 'Add photo',
+                          }),
+                          (0, b.jsxs)('label', {
+                            className: s.default.visibility,
+                            children: [
+                              (0, b.jsx)('span', {
+                                className: s.default.visibilityLabel,
+                                children: 'Who can see this',
+                              }),
+                              (0, b.jsx)(j.f, {
+                                size: 'sm',
+                                value: w,
+                                onChange: (a) => x(a.target.value),
+                                children: c
+                                  ? (0, b.jsxs)(b.Fragment, {
+                                      children: [
+                                        (0, b.jsx)('option', {
+                                          value: 'public',
+                                          children: 'Everyone',
+                                        }),
+                                        (0, b.jsx)('option', {
+                                          value: 'community',
+                                          children: 'Members only',
+                                        }),
+                                      ],
+                                    })
+                                  : (0, b.jsxs)(b.Fragment, {
+                                      children: [
+                                        (0, b.jsx)('option', {
+                                          value: 'public',
+                                          children: 'Everyone',
+                                        }),
+                                        (0, b.jsx)('option', {
+                                          value: 'followers',
+                                          children: 'Followers only',
+                                        }),
+                                      ],
+                                    }),
+                              }),
+                            ],
+                          }),
+                        ],
+                      }),
+                      (0, b.jsxs)('div', {
+                        className: s.default.submit,
+                        children: [
+                          (0, b.jsxs)('span', {
+                            className: s.default.count,
+                            'data-over': I || void 0,
+                            children: [H, ' / ', o.T],
+                          }),
+                          (0, b.jsx)(f.f, {
+                            type: 'submit',
+                            variant: 'primary',
+                            disabled: !K,
+                            loading: G.isPending,
+                            children: 'Post',
+                          }),
+                        ],
+                      }),
+                    ],
+                  }),
+                ],
+              }),
+            ],
+          });
+        },
+      ],
+      82530,
+    );
+  },
+];
+
+//# sourceMappingURL=apps_web_src_components_1nt_50i6spges._.js.map

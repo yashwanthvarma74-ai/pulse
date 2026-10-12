@@ -1,0 +1,48 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--mrd-space-6);
+}
+
+.title {
+  font-size: var(--mrd-font-size-3xl);
+  font-weight: var(--mrd-font-weight-bold);
+  letter-spacing: var(--mrd-font-tracking-tight);
+}
+
+.subtitle {
+  font-size: var(--mrd-font-size-xl);
+  font-weight: var(--mrd-font-weight-semibold);
+}
+
+.replies {
+  display: flex;
+  flex-direction: column;
+  gap: var(--mrd-space-4);
+}
+
+.form {
+  display: flex;
+  gap: var(--mrd-space-3);
+}
+
+.field {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: var(--mrd-space-2);
+  min-width: 0;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--mrd-space-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.empty {
+  color: var(--mrd-color-text-secondary);
+}

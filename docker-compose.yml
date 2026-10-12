@@ -1,0 +1,80 @@
+# Everything Pulse needs on one machine:  cp .env.example .env && docker compose up --build
+#
+# NOT YET RUN: Docker is not installed on the machine this project was built on. The same stack runs
+# without containers through "npm run dev" (see README), which is what the numbers in the docs come from.
+services:
+  mongo:
+    image: mongo:8
+    volumes: [mongo-data:/data/db]
+    ports: ['27017:27017']
+
+  redis:
+    image: redis:8
+    volumes: [redis-data:/data]
+    ports: ['6379:6379']
+
+  minio:
+    image: minio/minio
+    command: server /data --console-address ":9001"
+    environment:
+      MINIO_ROOT_USER: minioadmin
+      MINIO_ROOT_PASSWORD: minioadmin
+    volumes: [minio-data:/data]
+    ports: ['9000:9000', '9001:9001']
+
+  api:
+    build: { context: ., dockerfile: apps/api/Dockerfile }
+    depends_on: [mongo, redis, minio]
+    environment: &app-env
+      MONGODB_URI: mongodb://mongo:27017/pulse
+      REDIS_URL: redis://redis:6379
+      JWT_SECRET: ${JWT_SECRET:?set JWT_SECRET in .env}
+      SITE_ORIGIN: http://localhost:3000
+      STORAGE_DRIVER: s3
+      S3_ENDPOINT: http://minio:9000
+      S3_BUCKET: pulse-media
+      S3_REGION: us-east-1
+      S3_ACCESS_KEY_ID: minioadmin
+      S3_SECRET_ACCESS_KEY: minioadmin
+      LOG_LEVEL: info
+    ports: ['4001:4001', '9464:9464']
+
+  worker:
+    build: { context: ., dockerfile: apps/worker/Dockerfile }
+    depends_on: [mongo, redis, minio]
+    environment: *app-env
+    ports: ['9465:9465']
+
+  web:
+    build:
+      context: .
+      dockerfile: apps/web/Dockerfile
+      args:
+        NEXT_PUBLIC_WS_URL: ws://localhost:4001/ws
+    depends_on: [api]
+    environment:
+      API_URL: http://api:4001
+    ports: ['3000:3000']
+
+  prometheus:
+    image: prom/prometheus
+    volumes:
+      - ./infra/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - ./infra/prometheus/rules.yml:/etc/prometheus/rules.yml:ro
+    ports: ['9090:9090']
+
+  grafana:
+    image: grafana/grafana
+    environment:
+      GF_AUTH_ANONYMOUS_ENABLED: 'true'
+      GF_AUTH_ANONYMOUS_ORG_ROLE: Viewer
+    volumes:
+      - ./infra/grafana/provisioning:/etc/grafana/provisioning:ro
+      - ./infra/grafana/dashboards:/var/lib/grafana/dashboards:ro
+    depends_on: [prometheus]
+    ports: ['3001:3000']
+
+volumes:
+  mongo-data:
+  redis-data:
+  minio-data:
