@@ -17,7 +17,7 @@ export function useScrollFps(enabled: boolean) {
     let started = 0;
     let raf = 0;
     let idle: ReturnType<typeof setTimeout> | undefined;
-    let lastReport = 0;
+    let lastReport = -Infinity;
 
     const tick = () => {
       frames += 1;

@@ -17,4 +17,4 @@ the scripts in `perf/`. Raw results are in `docs/perf/`.
 | Unauthorized items shown   | 0 (randomized privacy test plus browser tests)                                    | `privacy.property.test.ts` |
 
 Not measured or not met: heap is linear in loaded posts; mobile LCP is bounded by loading JS, then session, then feed
-(server-rendering the first page is the next step); the scroll-smoothness reporter in the browser has no unit test yet.
+(server-rendering the first page is the next step).
