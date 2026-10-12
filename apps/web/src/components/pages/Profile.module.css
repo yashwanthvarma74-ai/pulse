@@ -9,6 +9,12 @@
   flex-wrap: wrap;
   align-items: center;
   gap: var(--mrd-space-4);
+  padding: var(--mrd-space-5);
+  border: var(--mrd-border-width-thin) solid var(--glass-border);
+  border-radius: var(--mrd-radius-2xl);
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  box-shadow: var(--glow);
 }
 
 .who {
@@ -21,6 +27,12 @@
   font-weight: var(--mrd-font-weight-bold);
   letter-spacing: var(--mrd-font-tracking-tight);
   line-height: var(--mrd-font-line-height-tight);
+  font-family: var(--font-display);
+  background: var(--brand-gradient);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
 }
 
 .handle,

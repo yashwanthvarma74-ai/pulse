@@ -8,6 +8,12 @@
   font-size: var(--mrd-font-size-3xl);
   font-weight: var(--mrd-font-weight-bold);
   letter-spacing: var(--mrd-font-tracking-tight);
+  font-family: var(--font-display);
+  background: var(--brand-gradient);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
 }
 
 .subtitle {
@@ -36,8 +42,13 @@
   text-decoration: none;
 }
 
+.person {
+  border: var(--mrd-border-width-thin) solid transparent;
+}
+
 .person:hover {
-  background: var(--mrd-color-bg-muted);
+  border-color: var(--glass-border);
+  background: var(--mrd-color-accent-subtle);
 }
 
 .handle {

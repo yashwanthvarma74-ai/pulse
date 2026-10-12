@@ -144,3 +144,57 @@ h3 {
     opacity: 0;
   }
 }
+
+/* ---- overlays and small parts, so a dialog or a menu is as futuristic as the page under it ---- */
+[data-theme='dark'] [class*='mrd_Dialog-module_panel'],
+[data-theme='dark'] [class*='mrd_Popover-module_content'],
+[data-theme='dark'] [class*='mrd_Menu-module_popover'] {
+  background: rgba(10, 14, 36, 0.88);
+  backdrop-filter: blur(22px) saturate(150%);
+  border-color: var(--glass-border);
+  box-shadow:
+    0 0 0 1px rgba(53, 224, 255, 0.06),
+    0 24px 70px -20px rgba(124, 58, 237, 0.6);
+}
+
+[data-theme='dark'] [class*='mrd_Dialog-module_overlay'] {
+  background: rgba(2, 3, 12, 0.7);
+  backdrop-filter: blur(4px);
+}
+
+[data-theme='dark'] [class*='mrd_Toast-module_toast'] {
+  background: rgba(10, 14, 36, 0.92);
+  backdrop-filter: blur(16px);
+  border-color: var(--glass-border);
+  box-shadow: 0 14px 44px -14px rgba(53, 224, 255, 0.35);
+}
+
+[data-theme='dark'] [class*='mrd_Alert-module_alert'] {
+  backdrop-filter: blur(12px);
+}
+
+[data-theme='dark'] [class*='mrd_EmptyState-module_iconWrap'] {
+  box-shadow: 0 0 26px rgba(143, 123, 255, 0.45);
+}
+
+[data-theme='dark'] [class*='mrd_Badge-module_badge'] {
+  border: var(--mrd-border-width-thin) solid var(--glass-border);
+}
+
+/* fields glow where the cursor is */
+[data-theme='dark'] input:focus-visible,
+[data-theme='dark'] textarea:focus-visible,
+[data-theme='dark'] select:focus-visible {
+  box-shadow: 0 0 0 3px rgba(53, 224, 255, 0.22);
+}
+
+[data-theme='dark'] [class*='mrd_Skeleton-module_skeleton'] {
+  background: linear-gradient(90deg, #10163a 0%, #1b2457 50%, #10163a 100%);
+  background-size: 200% 100%;
+}
+
+/* a thin neon scrollbar */
+[data-theme='dark'] {
+  scrollbar-color: #3a4a9e #070a1c;
+  scrollbar-width: thin;
+}

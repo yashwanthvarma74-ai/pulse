@@ -8,12 +8,24 @@
   font-size: var(--mrd-font-size-3xl);
   font-weight: var(--mrd-font-weight-bold);
   letter-spacing: var(--mrd-font-tracking-tight);
+  font-family: var(--font-display);
+  background: var(--brand-gradient);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
 }
 
 .section {
   display: flex;
   flex-direction: column;
   gap: var(--mrd-space-3);
+  padding: var(--mrd-space-5);
+  border: var(--mrd-border-width-thin) solid var(--glass-border);
+  border-radius: var(--mrd-radius-2xl);
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  box-shadow: var(--glow);
 }
 
 .subtitle {
@@ -35,7 +47,11 @@
   justify-content: space-between;
   gap: var(--mrd-space-3);
   padding: var(--mrd-space-2) 0;
-  border-bottom: var(--mrd-border-width-thin) solid var(--mrd-color-border-subtle);
+  margin-bottom: var(--mrd-space-2);
+  border: var(--mrd-border-width-thin) solid var(--glass-border);
+  border-radius: var(--mrd-radius-xl);
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
 }
 
 .muted {
