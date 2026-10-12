@@ -1,0 +1,9 @@
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--mrd-space-6);
+}
+
+.errorText {
+  margin-bottom: var(--mrd-space-3);
+}
