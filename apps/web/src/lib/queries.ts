@@ -38,8 +38,10 @@ export function useDemoAccounts() {
 }
 
 // Everything on screen belongs to whoever is signed in, so a new session starts from a clean cache.
+// Only the session entry is kept: clearing the whole cache would also detach the components that are
+// watching it, and they would never hear about the new user.
 function startSession(queryClient: QueryClient, user: Awaited<ReturnType<typeof api.me>>) {
-  queryClient.clear();
+  queryClient.removeQueries({ predicate: (query) => query.queryKey[0] !== keys.session[0] });
   queryClient.setQueryData(keys.session, user);
 }
 

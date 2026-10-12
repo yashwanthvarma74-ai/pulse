@@ -4,8 +4,10 @@
   padding: var(--mrd-space-4);
   border: var(--mrd-border-width-thin) solid var(--mrd-color-border-subtle);
   border-radius: var(--mrd-radius-xl);
-  background: var(--mrd-color-bg-surface);
-  box-shadow: var(--mrd-shadow-xs);
+  border-color: var(--glass-border);
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  box-shadow: var(--glow);
 }
 
 .body {

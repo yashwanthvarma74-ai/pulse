@@ -1,34 +1,44 @@
 {
   "app": {
     "[project]/apps/web/src/app/_not-found/page": [
-      "static/media/83afe278b6a6bb3c-s.p.2bn3s6zvc0dyp.woff2"
+      "static/media/83afe278b6a6bb3c-s.p.2bn3s6zvc0dyp.woff2",
+      "static/media/0c89a48fa5027cee-s.p.2cyn07wtgehh0.woff2"
     ],
     "[project]/apps/web/src/app/c/[slug]/page": [
-      "static/media/83afe278b6a6bb3c-s.p.2bn3s6zvc0dyp.woff2"
+      "static/media/83afe278b6a6bb3c-s.p.2bn3s6zvc0dyp.woff2",
+      "static/media/0c89a48fa5027cee-s.p.2cyn07wtgehh0.woff2"
     ],
     "[project]/apps/web/src/app/communities/page": [
-      "static/media/83afe278b6a6bb3c-s.p.2bn3s6zvc0dyp.woff2"
+      "static/media/83afe278b6a6bb3c-s.p.2bn3s6zvc0dyp.woff2",
+      "static/media/0c89a48fa5027cee-s.p.2cyn07wtgehh0.woff2"
     ],
     "[project]/apps/web/src/app/moderation/page": [
-      "static/media/83afe278b6a6bb3c-s.p.2bn3s6zvc0dyp.woff2"
+      "static/media/83afe278b6a6bb3c-s.p.2bn3s6zvc0dyp.woff2",
+      "static/media/0c89a48fa5027cee-s.p.2cyn07wtgehh0.woff2"
     ],
     "[project]/apps/web/src/app/notifications/page": [
-      "static/media/83afe278b6a6bb3c-s.p.2bn3s6zvc0dyp.woff2"
+      "static/media/83afe278b6a6bb3c-s.p.2bn3s6zvc0dyp.woff2",
+      "static/media/0c89a48fa5027cee-s.p.2cyn07wtgehh0.woff2"
     ],
     "[project]/apps/web/src/app/p/[id]/page": [
-      "static/media/83afe278b6a6bb3c-s.p.2bn3s6zvc0dyp.woff2"
+      "static/media/83afe278b6a6bb3c-s.p.2bn3s6zvc0dyp.woff2",
+      "static/media/0c89a48fa5027cee-s.p.2cyn07wtgehh0.woff2"
     ],
     "[project]/apps/web/src/app/page": [
-      "static/media/83afe278b6a6bb3c-s.p.2bn3s6zvc0dyp.woff2"
+      "static/media/83afe278b6a6bb3c-s.p.2bn3s6zvc0dyp.woff2",
+      "static/media/0c89a48fa5027cee-s.p.2cyn07wtgehh0.woff2"
     ],
     "[project]/apps/web/src/app/search/page": [
-      "static/media/83afe278b6a6bb3c-s.p.2bn3s6zvc0dyp.woff2"
+      "static/media/83afe278b6a6bb3c-s.p.2bn3s6zvc0dyp.woff2",
+      "static/media/0c89a48fa5027cee-s.p.2cyn07wtgehh0.woff2"
     ],
     "[project]/apps/web/src/app/settings/page": [
-      "static/media/83afe278b6a6bb3c-s.p.2bn3s6zvc0dyp.woff2"
+      "static/media/83afe278b6a6bb3c-s.p.2bn3s6zvc0dyp.woff2",
+      "static/media/0c89a48fa5027cee-s.p.2cyn07wtgehh0.woff2"
     ],
     "[project]/apps/web/src/app/u/[handle]/page": [
-      "static/media/83afe278b6a6bb3c-s.p.2bn3s6zvc0dyp.woff2"
+      "static/media/83afe278b6a6bb3c-s.p.2bn3s6zvc0dyp.woff2",
+      "static/media/0c89a48fa5027cee-s.p.2cyn07wtgehh0.woff2"
     ]
   },
   "appUsingSizeAdjust": true,

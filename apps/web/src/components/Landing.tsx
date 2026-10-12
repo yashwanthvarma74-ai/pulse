@@ -13,12 +13,19 @@ export default function Landing() {
 
   return (
     <section className={styles.landing} aria-labelledby="landing-title">
+      <div className={styles.orb} aria-hidden="true" />
+      <p className={styles.eyebrow}>Social, rebuilt</p>
       <h1 id="landing-title" className={styles.title}>
         Pulse
       </h1>
       <p className={styles.pitch}>
         A social feed and communities app that stays fast, correct and private as it grows.
       </p>
+      <ul className={styles.facts} aria-label="What it is built for">
+        <li>Private by design</li>
+        <li>Live in real time</li>
+        <li>10,000 posts at 60 fps</li>
+      </ul>
       <div className={styles.action}>
         <Button
           variant="primary"

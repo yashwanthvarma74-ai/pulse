@@ -1,0 +1,146 @@
+/* The Pulse look: a dark, glassy "2050" skin over the Meridian design system.
+   It only overrides Meridian's tokens and adds a few surfaces; every component still comes from the
+   library. Light and high contrast stay the library's own, for people who need them. */
+
+:root {
+  --font-display: var(--font-space), var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --glass-bg: var(--mrd-color-bg-surface);
+  --glass-border: var(--mrd-color-border-subtle);
+  --glass-blur: none;
+  --glow: none;
+  --brand-gradient: linear-gradient(
+    135deg,
+    var(--mrd-color-accent-default),
+    var(--mrd-color-accent-default)
+  );
+}
+
+[data-theme='dark'] {
+  color-scheme: dark;
+
+  --mrd-color-bg-canvas: #04050d;
+  --mrd-color-bg-surface: #0b1020;
+  --mrd-color-bg-subtle: #10163a;
+  --mrd-color-bg-muted: #171f4d;
+  --mrd-color-text-primary: #f1f4ff;
+  --mrd-color-text-secondary: #bcc5f0;
+  --mrd-color-text-tertiary: #9ca8dc;
+  --mrd-color-text-link: #8fe3ff;
+  --mrd-color-border-subtle: #212b60;
+  --mrd-color-border-default: #34428f;
+  --mrd-color-border-strong: #7e8bd0;
+  --mrd-color-accent-default: #35e0ff;
+  --mrd-color-accent-hover: #7aeaff;
+  --mrd-color-accent-active: #a8f0ff;
+  --mrd-color-accent-subtle: rgba(53, 224, 255, 0.12);
+  --mrd-color-accent-subtle-hover: rgba(53, 224, 255, 0.2);
+  --mrd-color-accent-text: #7ae7ff;
+  --mrd-color-accent-on-accent: #00131a;
+  --mrd-color-focus-ring: #7ae7ff;
+
+  --glass-bg: rgba(12, 17, 40, 0.68);
+  --glass-border: rgba(110, 130, 255, 0.28);
+  --glass-blur: blur(16px) saturate(140%);
+  --glow: 0 0 0 1px rgba(53, 224, 255, 0.04), 0 10px 40px -12px rgba(124, 58, 237, 0.45);
+  --brand-gradient: linear-gradient(120deg, #35e0ff 0%, #8f7bff 55%, #ff6bd6 100%);
+}
+
+[data-theme='dark'] body {
+  background:
+    radial-gradient(1100px 620px at 10% -12%, rgba(124, 58, 237, 0.32), transparent 62%),
+    radial-gradient(900px 520px at 96% 4%, rgba(34, 211, 238, 0.22), transparent 58%),
+    radial-gradient(900px 640px at 50% 115%, rgba(236, 72, 153, 0.16), transparent 62%), #04050d;
+  background-attachment: fixed;
+}
+
+/* a faint grid fading out from the top, like a blueprint of a city */
+[data-theme='dark'] body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(120, 140, 255, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(120, 140, 255, 0.07) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 25%, transparent 78%);
+}
+
+body > * {
+  position: relative;
+  z-index: 1;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+}
+
+/* Meridian components get a neon edge in the dark theme */
+[data-theme='dark'] [class*='mrd_Button-module_primary'] {
+  background: linear-gradient(135deg, #35e0ff, #9d8bff);
+  border-color: transparent;
+  color: #00131a;
+  font-weight: var(--mrd-font-weight-semibold);
+  box-shadow: 0 0 26px rgba(53, 224, 255, 0.35);
+  transition:
+    box-shadow var(--mrd-motion-duration-base) var(--mrd-motion-easing-standard),
+    filter var(--mrd-motion-duration-base) var(--mrd-motion-easing-standard);
+}
+
+[data-theme='dark'] [class*='mrd_Button-module_primary']:hover:not(:disabled) {
+  filter: brightness(1.12);
+  box-shadow: 0 0 38px rgba(53, 224, 255, 0.55);
+}
+
+[data-theme='dark'] [class*='mrd_Button-module_secondary'] {
+  background: rgba(20, 28, 66, 0.7);
+  border-color: var(--glass-border);
+  backdrop-filter: var(--glass-blur);
+}
+
+[data-theme='dark'] [class*='mrd_Avatar-module_avatar'] {
+  box-shadow:
+    0 0 0 1px rgba(53, 224, 255, 0.45),
+    0 0 16px rgba(143, 123, 255, 0.4);
+}
+
+[data-theme='dark'] [class*='mrd_Tabs-module'][role='tab'][aria-selected='true'] {
+  text-shadow: 0 0 14px rgba(53, 224, 255, 0.6);
+}
+
+[data-theme='dark'] [class*='mrd_Card-module_card'] {
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  border-color: var(--glass-border);
+  box-shadow: var(--glow);
+}
+
+[data-theme='dark'] ::selection {
+  background: rgba(143, 123, 255, 0.5);
+  color: #fff;
+}
+
+/* a slow shimmer on the brand mark and the landing orb; stills under reduced motion (base.css) */
+@keyframes drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(2%, -3%, 0) scale(1.06);
+  }
+}
+
+@keyframes ring {
+  0% {
+    transform: scale(0.6);
+    opacity: 0.55;
+  }
+  100% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}

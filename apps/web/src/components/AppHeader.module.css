@@ -3,7 +3,19 @@
   top: 0;
   z-index: var(--mrd-z-sticky);
   border-bottom: var(--mrd-border-width-thin) solid var(--mrd-color-border-subtle);
-  background: var(--mrd-color-bg-surface);
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+}
+
+/* a thin line of light under the header */
+.header::after {
+  content: '';
+  position: absolute;
+  inset: auto 0 -1px 0;
+  height: 1px;
+  background: var(--brand-gradient);
+  opacity: 0.55;
+  pointer-events: none;
 }
 
 .inner {
@@ -18,10 +30,16 @@
 
 .brand {
   color: var(--mrd-color-text-primary);
-  font-size: var(--mrd-font-size-xl);
+  font-family: var(--font-display);
+  font-size: var(--mrd-font-size-2xl);
   font-weight: var(--mrd-font-weight-bold);
-  letter-spacing: var(--mrd-font-tracking-tight);
+  letter-spacing: 0.02em;
   text-decoration: none;
+  background: var(--brand-gradient);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
 }
 
 .nav {

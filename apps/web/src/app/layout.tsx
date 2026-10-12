@@ -1,13 +1,15 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import { Inter, Space_Grotesk } from 'next/font/google';
 import '@yashwanthvarma74/react/styles.css';
 import '@/styles/base.css';
+import '@/styles/futuristic.css';
 import AppHeader from '@/components/AppHeader';
 import Providers from '@/components/Providers';
 import ThemeScript from '@/components/ThemeScript';
 import styles from './layout.module.css';
 
 const inter = Inter({ variable: '--font-inter', subsets: ['latin'] });
+const space = Space_Grotesk({ variable: '--font-space', subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: { default: 'Pulse', template: '%s | Pulse' },
@@ -18,7 +20,12 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     // The theme script sets data-theme before first paint, so the attribute differs from the server's.
-    <html lang="en" className={inter.variable} suppressHydrationWarning>
+    <html
+      lang="en"
+      data-theme="dark"
+      className={`${inter.variable} ${space.variable}`}
+      suppressHydrationWarning
+    >
       <head>
         <ThemeScript />
       </head>

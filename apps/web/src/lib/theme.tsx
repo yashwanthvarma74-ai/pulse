@@ -46,9 +46,9 @@ function stored(): ThemePreference | null {
 }
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
-  const [preference, setPreference] = useState<ThemePreference>('system');
+  const [preference, setPreference] = useState<ThemePreference>('dark');
   // follows the system setting while the preference is "system"
-  const [system, setSystem] = useState<ThemeName>('light');
+  const [system, setSystem] = useState<ThemeName>('dark');
 
   useEffect(() => {
     const saved = stored();
@@ -88,5 +88,5 @@ export function useTheme(): ThemeValue {
 
 // Runs in <head> before the first paint, so a saved dark or high contrast choice never flashes light.
 export function getThemeInitScript(): string {
-  return `(function(){try{var s=localStorage.getItem(${JSON.stringify(STORAGE_KEY)});var m=window.matchMedia;var t=s&&s!=="system"?s:(m("(prefers-contrast: more)").matches?"high-contrast":m("(prefers-color-scheme: dark)").matches?"dark":"light");document.documentElement.setAttribute("data-theme",t)}catch(e){}})();`;
+  return `(function(){try{var s=localStorage.getItem(${JSON.stringify(STORAGE_KEY)});var m=window.matchMedia;var t=s==="system"?(m("(prefers-contrast: more)").matches?"high-contrast":m("(prefers-color-scheme: dark)").matches?"dark":"light"):(s||"dark");document.documentElement.setAttribute("data-theme",t)}catch(e){}})();`;
 }

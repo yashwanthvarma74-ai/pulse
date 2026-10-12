@@ -4,7 +4,17 @@
   padding: var(--mrd-space-4);
   border: var(--mrd-border-width-thin) solid var(--mrd-color-border-subtle);
   border-radius: var(--mrd-radius-xl);
-  background: var(--mrd-color-bg-surface);
+  border-color: var(--glass-border);
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  transition:
+    box-shadow var(--mrd-motion-duration-base) var(--mrd-motion-easing-standard),
+    border-color var(--mrd-motion-duration-base) var(--mrd-motion-easing-standard);
+}
+
+.post:hover {
+  border-color: var(--mrd-color-border-default);
+  box-shadow: var(--glow);
 }
 
 .body {
