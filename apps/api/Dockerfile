@@ -1,5 +1,5 @@
 # Build from the repository root:  docker build -f apps/api/Dockerfile -t pulse-api .
-FROM node:22-slim AS build
+FROM node:26-slim AS build
 WORKDIR /app
 COPY package.json package-lock.json ./
 COPY packages ./packages
@@ -11,7 +11,7 @@ RUN npm ci --ignore-scripts=false
 COPY apps/api ./apps/api
 RUN npm run build -w @pulse/api && npm prune --omit=dev
 
-FROM node:22-slim
+FROM node:26-slim
 WORKDIR /app/apps/api
 ENV NODE_ENV=production
 COPY --from=build /app/node_modules /app/node_modules
