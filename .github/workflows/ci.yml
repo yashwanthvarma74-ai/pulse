@@ -47,7 +47,7 @@ jobs:
         run: npm run test:coverage
       - name: Audit dependencies
         run: npm audit --audit-level=high --omit=dev
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         if: always()
         with:
           name: coverage
@@ -89,7 +89,7 @@ jobs:
       - run: npx playwright install --with-deps chromium
       - name: Privacy, realtime, images, feed and accessibility
         run: npm run e2e
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         if: failure()
         with:
           name: playwright-report
