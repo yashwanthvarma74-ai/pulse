@@ -1,0 +1,13 @@
+.footer {
+  padding: var(--mrd-space-8) var(--mrd-space-4) var(--mrd-space-10);
+  text-align: center;
+  color: var(--mrd-color-text-secondary);
+  font-family: var(--font-mono);
+  font-size: var(--mrd-font-size-sm);
+  letter-spacing: 0.08em;
+}
+
+.footer a {
+  color: var(--mrd-color-accent-text);
+  text-underline-offset: 3px;
+}

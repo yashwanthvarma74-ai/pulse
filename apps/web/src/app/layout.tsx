@@ -5,6 +5,7 @@ import '@/styles/base.css';
 import '@/styles/futuristic.css';
 import AppHeader from '@/components/AppHeader';
 import Providers from '@/components/Providers';
+import SiteFooter from '@/components/SiteFooter';
 import ThemeScript from '@/components/ThemeScript';
 import styles from './layout.module.css';
 
@@ -14,6 +15,8 @@ const mono = JetBrains_Mono({ variable: '--font-mono', subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: { default: 'Pulse', template: '%s | Pulse' },
+  authors: [{ name: 'Yashwanth Varma', url: 'https://github.com/yashwanthvarma74-ai' }],
+  creator: 'Yashwanth Varma',
   description:
     'A social feed and communities app that stays fast, correct and private as it grows.',
 };
@@ -39,6 +42,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <main id="main" tabIndex={-1} className={styles.main}>
             {children}
           </main>
+          <SiteFooter />
         </Providers>
       </body>
     </html>

@@ -9,6 +9,11 @@ test('"Continue as guest" signs in and shows the feed', async ({ page }) => {
   await expect(page.getByRole('article').first()).toBeVisible();
 });
 
+test('the credit is on the page', async ({ page }) => {
+  await page.goto('/');
+  await expect(page.getByRole('contentinfo')).toContainText('Developed by Yashwanth Varma');
+});
+
 test('a demo account button signs in as that person', async ({ page }) => {
   await page.goto('/');
   await page.getByRole('button', { name: 'Alice Nguyen' }).click();
