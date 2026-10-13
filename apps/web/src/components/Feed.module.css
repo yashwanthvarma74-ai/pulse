@@ -25,8 +25,23 @@
 }
 
 .end {
+  display: flex;
+  align-items: center;
+  gap: var(--mrd-space-3);
+  width: 100%;
   color: var(--mrd-color-text-secondary);
-  font-size: var(--mrd-font-size-md);
+  font-family: var(--font-mono);
+  font-size: var(--mrd-font-size-xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.end::before,
+.end::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--glass-border), transparent);
 }
 
 .alertText {

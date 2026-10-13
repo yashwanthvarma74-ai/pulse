@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Inter, Space_Grotesk } from 'next/font/google';
+import { Inter, JetBrains_Mono, Space_Grotesk } from 'next/font/google';
 import '@yashwanthvarma74/react/styles.css';
 import '@/styles/base.css';
 import '@/styles/futuristic.css';
@@ -10,6 +10,7 @@ import styles from './layout.module.css';
 
 const inter = Inter({ variable: '--font-inter', subsets: ['latin'] });
 const space = Space_Grotesk({ variable: '--font-space', subsets: ['latin'] });
+const mono = JetBrains_Mono({ variable: '--font-mono', subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: { default: 'Pulse', template: '%s | Pulse' },
@@ -23,7 +24,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html
       lang="en"
       data-theme="dark"
-      className={`${inter.variable} ${space.variable}`}
+      className={`${inter.variable} ${space.variable} ${mono.variable}`}
       suppressHydrationWarning
     >
       <head>

@@ -198,3 +198,30 @@ h3 {
   scrollbar-color: #3a4a9e #070a1c;
   scrollbar-width: thin;
 }
+
+/* ---- the feed order switch becomes a glass segmented control ---- */
+[data-theme='dark'] [class*='mrd_Tabs-module_list'] {
+  display: inline-flex;
+  align-self: flex-start;
+  gap: var(--mrd-space-1);
+  padding: var(--mrd-space-1);
+  border: var(--mrd-border-width-thin) solid var(--glass-border);
+  border-radius: var(--mrd-radius-full);
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+}
+
+[data-theme='dark'] [class*='mrd_Tabs-module_tab'] {
+  border-radius: var(--mrd-radius-full);
+  letter-spacing: 0.03em;
+}
+
+[data-theme='dark'] [class*='mrd_Tabs-module_tab'][aria-selected='true'] {
+  background: linear-gradient(135deg, rgba(53, 224, 255, 0.2), rgba(143, 123, 255, 0.25));
+  color: #fff;
+  box-shadow: 0 0 22px rgba(53, 224, 255, 0.3);
+}
+
+[data-theme='dark'] [class*='mrd_Tabs-module_tab'][aria-selected='true']::after {
+  display: none;
+}

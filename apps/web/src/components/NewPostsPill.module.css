@@ -10,3 +10,21 @@
 .pill {
   box-shadow: var(--mrd-shadow-md);
 }
+
+.pill {
+  animation: beacon 2.4s ease-in-out infinite;
+}
+
+@keyframes beacon {
+  0%,
+  100% {
+    box-shadow:
+      0 0 0 0 rgba(53, 224, 255, 0.55),
+      0 0 28px rgba(53, 224, 255, 0.4);
+  }
+  50% {
+    box-shadow:
+      0 0 0 10px rgba(53, 224, 255, 0),
+      0 0 40px rgba(143, 123, 255, 0.55);
+  }
+}
