@@ -1,5 +1,5 @@
 import { pino } from 'pino';
-import { createCore, loadConfig, startMetrics } from '@pulse/core';
+import { createCore, loadConfig, startMetrics, startWorkers } from '@pulse/core';
 import { createApp } from './app';
 import { attachGateway } from './gateway';
 
@@ -12,10 +12,13 @@ const server = createApp(core, logger).listen(config.API_PORT, () => {
   logger.info(`API listening on port ${config.API_PORT}`);
 });
 const closeGateway = attachGateway(server, core, logger);
+const stopWorkers = config.RUN_WORKER ? startWorkers(core) : async () => undefined;
+if (config.RUN_WORKER) logger.info('Workers running inside the API process');
 
 async function shutdown() {
   server.close();
   await closeGateway();
+  await stopWorkers();
   await core.close();
   await stopMetrics();
   process.exit(0);

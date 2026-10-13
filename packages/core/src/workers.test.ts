@@ -1,8 +1,10 @@
 import { ObjectId } from 'mongodb';
 import sharp from 'sharp';
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
-import { createPost, followUser, uploadImage } from '@pulse/core';
-import { createTestCore, type TestCore } from '@pulse/core/test';
+import { followUser } from './graph';
+import { uploadImage } from './media/media';
+import { createPost } from './posts';
+import { createTestCore, type TestCore } from './test/context';
 import { startWorkers } from './workers';
 
 // The real queues and the real workers, against local Redis and MongoDB.

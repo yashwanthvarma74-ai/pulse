@@ -1,16 +1,8 @@
 import { Worker, type Job } from 'bullmq';
 import { Redis } from 'ioredis';
-import {
-  handleEvent,
-  handleMedia,
-  handleModeration,
-  QUEUE_NAMES,
-  sweepUnprocessed,
-  type Core,
-  type MediaJob,
-  type ModerationJob,
-  type PulseEvent,
-} from '@pulse/core';
+import type { Core } from './core';
+import { QUEUE_NAMES, type MediaJob, type ModerationJob, type PulseEvent } from './events';
+import { handleEvent, handleMedia, handleModeration, sweepUnprocessed } from './handlers';
 
 const SWEEP_EVERY_MS = 30_000;
 

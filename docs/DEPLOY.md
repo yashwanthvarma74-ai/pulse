@@ -18,6 +18,58 @@ It seeds a database, builds and starts the stack with the demo accounts, serves 
 **Continue as guest** or use the demo accounts. Press Ctrl+C to take it down. Anyone with the link can sign in as a
 demo account, so it is for showing people, not for leaving up.
 
+## Render (one free web service)
+
+Render's free tier has no background workers, and every service gets its own `onrender.com` address (a public
+suffix, so cookies cannot be shared between two of them). So Pulse runs as **one** service: the API with the
+workers inside it (`RUN_WORKER=true`), the Next.js server and the one-port proxy, started by
+`scripts/render-start.mjs` from the root `Dockerfile`. The browser sees one address, so the session cookie and the
+WebSocket just work. **Not yet run on Render.**
+
+1. **MongoDB Atlas.** Create a free cluster and a user, allow access from anywhere, and copy the connection string.
+2. **Render.** New, then Blueprint, pick the GitHub repository. Render reads `render.yaml`, makes the web service
+   and a free Redis, and asks for `MONGODB_URI` (paste the Atlas string). `JWT_SECRET` is generated for you.
+3. **Wait for the build** (several minutes), then open the service address. Check `/api/health` shows
+   `{"ok":true,"mongo":true,"redis":true}` and press **Continue as guest**.
+
+Things to know about the free plan:
+
+- It **sleeps after 15 minutes without traffic** and takes about a minute to wake, and the workers sleep with it. Add
+  a free uptime pinger (UptimeRobot, every 5 minutes, on `/api/health`) to keep it awake while you are applying.
+- It has **512 MB of memory** for the API, the workers and Next.js together. That is tight with image processing;
+  if it restarts under load, move to the first paid size.
+- It starts **empty**. To get the demo accounts and the sample posts, run the seed once from your laptop against the
+  Atlas database: `MONGODB_URI='<atlas string>' npm run seed`. The demo accounts are only listed when
+  `DEMO_LOGIN=true`, which production refuses, so on Render people use guest login.
+- **Images** are kept on the container's disk and disappear on every restart. Use Cloudflare R2 (`STORAGE_DRIVER=s3`,
+  see the variables above) if they should last.
+
+## Render (one free web service)
+
+Render's free tier has no background workers, and every service gets its own `onrender.com` address (a public
+suffix, so cookies cannot be shared between two of them). So Pulse runs as **one** service: the API with the
+workers inside it (`RUN_WORKER=true`), the Next.js server and the one-port proxy, started by
+`scripts/render-start.mjs` from the root `Dockerfile`. The browser sees one address, so the session cookie and the
+WebSocket just work. **Not yet run on Render.**
+
+1. **MongoDB Atlas.** Create a free cluster and a user, allow access from anywhere, and copy the connection string.
+2. **Render.** New, then Blueprint, pick the GitHub repository. Render reads `render.yaml`, makes the web service
+   and a free Redis, and asks for `MONGODB_URI` (paste the Atlas string). `JWT_SECRET` is generated for you.
+3. **Wait for the build** (several minutes), then open the service address. Check `/api/health` shows
+   `{"ok":true,"mongo":true,"redis":true}` and press **Continue as guest**.
+
+Things to know about the free plan:
+
+- It **sleeps after 15 minutes without traffic** and takes about a minute to wake, and the workers sleep with it. Add
+  a free uptime pinger (UptimeRobot, every 5 minutes, on `/api/health`) to keep it awake while you are applying.
+- It has **512 MB of memory** for the API, the workers and Next.js together. That is tight with image processing;
+  if it restarts under load, move to the first paid size.
+- It starts **empty**. To get the sample posts, run the seed once from your laptop against the Atlas database:
+  `MONGODB_URI='<atlas string>' npm run seed`. The demo accounts are only listed when `DEMO_LOGIN=true`, which
+  production refuses, so on Render people use guest login.
+- **Images** are kept on the container's disk and disappear on every restart. Use Cloudflare R2 (`STORAGE_DRIVER=s3`,
+  see the variables below) if they should last.
+
 ## What has to run
 
 | Part    | What                                                       | Needs                                                  |

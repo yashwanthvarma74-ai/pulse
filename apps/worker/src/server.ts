@@ -1,6 +1,5 @@
 import { pino } from 'pino';
-import { createCore, loadConfig, startMetrics } from '@pulse/core';
-import { startWorkers } from './workers';
+import { createCore, loadConfig, startMetrics, startWorkers } from '@pulse/core';
 
 const config = loadConfig();
 const logger = pino({ level: config.LOG_LEVEL });

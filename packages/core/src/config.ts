@@ -39,6 +39,10 @@ const envSchema = z.object({
   // the cookie that app.example.com set. Leave empty on localhost.
   COOKIE_DOMAIN: z.string().optional(),
 
+  // Run the queue workers inside the API process. For a small host that has one service; with a
+  // separate worker deployment leave it off.
+  RUN_WORKER: flag.default(false),
+
   // Posts and replies one address may write per minute. Raise it only for load tests.
   WRITE_RATE_LIMIT: z.coerce.number().int().positive().default(30),
 

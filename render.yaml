@@ -1,0 +1,36 @@
+# Render Blueprint: one free web service (API, workers, web app and proxy together) and a free Redis.
+# MongoDB stays on Atlas's free tier, because Render has no MongoDB. NOT YET RUN on Render.
+services:
+  - type: web
+    name: pulse
+    runtime: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    # goes through the web app's /api proxy to the API's /health
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: MONGODB_URI
+        sync: false # paste your Atlas connection string when Render asks
+      - key: REDIS_URL
+        fromService:
+          type: keyvalue
+          name: pulse-redis
+          property: connectionString
+      - key: JWT_SECRET
+        generateValue: true
+      # the browser's address and Render's proxy are two hops in front of the API
+      - key: TRUST_PROXY_HOPS
+        value: '2'
+      # images are kept on the container's disk, which Render wipes on every deploy and restart; use an
+      # S3-compatible bucket (Cloudflare R2) for anything that has to last
+      - key: STORAGE_DRIVER
+        value: local
+      - key: MEDIA_DIR
+        value: /tmp/pulse-media
+
+  - type: keyvalue
+    name: pulse-redis
+    plan: free
+    ipAllowList: [] # only Render services in the same account can reach it

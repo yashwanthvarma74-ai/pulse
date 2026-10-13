@@ -23,3 +23,4 @@ export * from './timelines';
 export * from './users';
 export * from './viewer';
 export * from './telemetry';
+export * from './workers';

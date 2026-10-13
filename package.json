@@ -17,7 +17,7 @@
     "lint": "eslint . && prettier --check .",
     "format": "prettier --write .",
     "typecheck": "npm run typecheck -ws --if-present",
-    "test": "npm run test -w @pulse/shared -w @pulse/core -w @pulse/api -w @pulse/worker -w @pulse/web",
+    "test": "npm run test -w @pulse/shared -w @pulse/core -w @pulse/api -w @pulse/web",
     "seed": "npm run seed -w @pulse/api --",
     "explain": "npm run explain -w @pulse/api",
     "e2e": "npm run test -w @pulse/e2e",
