@@ -13,13 +13,13 @@
   },
   "dependencies": {
     "@pulse/shared": "*",
-    "@tanstack/react-query": "^5.90.0",
-    "@tanstack/react-virtual": "^3.13.0",
-    "@yashwanthvarma74/react": "^0.1.1",
-    "@yashwanthvarma74/tokens": "^0.1.1",
-    "next": "^16.0.0",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "@tanstack/react-query": "^5.104.5",
+    "@tanstack/react-virtual": "^3.14.22",
+    "@yashwanthvarma74/react": "^0.2.0",
+    "@yashwanthvarma74/tokens": "^0.2.0",
+    "next": "^16.4.2",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1"
   },
   "devDependencies": {
     "@testing-library/dom": "^10.4.0",
